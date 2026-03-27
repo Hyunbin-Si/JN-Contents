@@ -10,7 +10,10 @@
   <style>
     :root {
       --duration: 15;
-      --accent: #0dcc5a;
+      --accent:      #C4F3BD;   /* fresh sprout green */
+      --accent-mid:  #7DCBA0;   /* medium jade — border/shadow용 */
+      --accent-dark: #21433E;   /* deep jungle — 다크 텍스트용 */
+      --bg-cream:    #FAFAF0;   /* warm cream white */
       --font-display: 'Bebas Neue', cursive;
       --font-body: 'Noto Sans KR', sans-serif;
     }
@@ -21,7 +24,7 @@
       width: 100%; height: 100%;
       overflow: hidden;
       cursor: none;
-      background: #050a0f;
+      background: var(--bg-cream);
       font-family: var(--font-body);
     }
 
@@ -107,16 +110,16 @@
     }
 
     /* ============================================================
-       STAGGER ANIMATION
+       STAGGER ANIMATION — 꽃봉오리 자라나듯 (grow-up)
     ============================================================ */
     .s-el {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      transform: translateY(22px) scale(0.97);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
     }
     .slide.active .s-el.in {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     /* ============================================================
@@ -127,8 +130,8 @@
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding: 5px 13px;
-      border-radius: 2px;
+      padding: 5px 14px;
+      border-radius: 20px;       /* 둥근 pill 형태 */
       margin-bottom: 2.2vh;
       display: inline-block;
     }
@@ -138,12 +141,13 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      border: 1.5px solid var(--accent);
-      color: var(--accent);
-      padding: 4px 12px;
-      border-radius: 2px;
+      border: 1.5px solid var(--accent-mid);
+      color: var(--accent-mid);
+      padding: 4px 14px;
+      border-radius: 20px;       /* 둥근 pill 형태 */
       margin-bottom: 2vh;
       display: inline-block;
+      backdrop-filter: blur(6px);
     }
 
     .s-title {
@@ -156,24 +160,31 @@
 
     .s-subtitle {
       font-family: var(--font-body);
-      font-size: clamp(29px, 5vw, 72px);
+      font-size: min(4vw, 58px);   /* 이전 대비 20% 축소 + 한 줄 유지 */
       font-weight: 500;
       letter-spacing: 0.02em;
       line-height: 1.3;
+      white-space: nowrap;
     }
 
     /* title + subtitle 가로 배치 (way / culture-item 전용) */
     .title-sub-row {
       display: flex;
       align-items: center;
-      gap: clamp(20px, 3vw, 56px);
+      gap: clamp(16px, 2vw, 48px);
       margin-bottom: 2.8vh;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;            /* 행 자체도 절대 줄바꿈 안 함 */
+      min-width: 0;
     }
-    .title-sub-row .s-title { margin-bottom: 0; }
+    .title-sub-row .s-title {
+      margin-bottom: 0;
+      white-space: nowrap;
+      flex-shrink: 0;               /* 타이틀은 크기 고정 */
+    }
     .title-sub-row .s-subtitle {
-      padding-left: 1.6vw;
+      padding-left: 1.4vw;
       border-left: 3px solid var(--accent);
+      min-width: 0;
     }
 
     .s-divider {
@@ -283,58 +294,71 @@
        THEMES
     ============================================================ */
 
-    /* — dark-neon — 미드나잇 블루 */
+    /* — dark-neon — 딥 포레스트 그린 */
     .theme-dark-neon {
-      background: #0d1526;
-      color: #fff;
+      background: #0f2318;
+      color: #e8f5e9;
     }
-    .theme-dark-neon .slide-ghost-num { color: rgba(13,204,90,0.06); }
+    .theme-dark-neon .slide-ghost-num { color: rgba(196,243,189,0.06); }
     .theme-dark-neon .s-tag {
-      background: rgba(13,204,90,0.12);
-      color: var(--accent);
-      border: 1px solid rgba(13,204,90,0.3);
+      background: rgba(196,243,189,0.1);
+      color: #C4F3BD;
+      border: 1px solid rgba(196,243,189,0.25);
+      border-radius: 20px;
     }
-    .theme-dark-neon .s-subtitle { color: rgba(255,255,255,0.65); }
-    .theme-dark-neon .s-body { color: rgba(255,255,255,0.78); }
-    .theme-dark-neon .intro-item-label { color: #fff; }
-    .theme-dark-neon .section-group-val { color: #fff; }
-    .theme-dark-neon .culture-grid-label { color: #fff; }
+    .theme-dark-neon .s-badge { border-color: #7DCBA0; color: #7DCBA0; }
+    .theme-dark-neon .s-subtitle { color: rgba(232,245,233,0.75); }
+    .theme-dark-neon .s-body { color: rgba(232,245,233,0.8); }
+    .theme-dark-neon .intro-item-label { color: #e8f5e9; }
+    .theme-dark-neon .section-group-val { color: #e8f5e9; }
+    .theme-dark-neon .culture-grid-label { color: #e8f5e9; }
+    .theme-dark-neon .title-sub-row .s-subtitle { border-left-color: #7DCBA0; }
 
-    /* — dark-amber — 쿨 네이비 슬레이트 */
+    /* — dark-amber — 정글 그린 딥 */
     .theme-dark-amber {
-      background: #111a2e;
-      color: #fff;
+      background: #102a1e;
+      color: #e8f5e9;
     }
-    .theme-dark-amber .slide-ghost-num { color: rgba(255,255,255,0.04); }
+    .theme-dark-amber .slide-ghost-num { color: rgba(196,243,189,0.05); }
     .theme-dark-amber .s-tag {
-      background: rgba(255,255,255,0.07);
-      color: rgba(255,255,255,0.6);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(196,243,189,0.08);
+      color: rgba(196,243,189,0.7);
+      border: 1px solid rgba(196,243,189,0.15);
+      border-radius: 20px;
     }
-    .theme-dark-amber .s-subtitle { color: rgba(255,255,255,0.88); }
-    .theme-dark-amber .s-body { color: rgba(255,255,255,0.88); }
-    .theme-dark-amber .intro-item-label { color: #fff; }
-    .theme-dark-amber .section-group-val { color: #fff; }
-    .theme-dark-amber .culture-grid-label { color: #fff; }
+    .theme-dark-amber .s-badge { border-color: #7DCBA0; color: #7DCBA0; }
+    .theme-dark-amber .s-subtitle { color: rgba(232,245,233,0.88); }
+    .theme-dark-amber .s-body { color: rgba(232,245,233,0.85); }
+    .theme-dark-amber .intro-item-label { color: #e8f5e9; }
+    .theme-dark-amber .section-group-val { color: #e8f5e9; }
+    .theme-dark-amber .culture-grid-label { color: #e8f5e9; }
+    .theme-dark-amber .title-sub-row .s-subtitle { border-left-color: #7DCBA0; }
 
-    /* — light-editorial — 순백 */
+    /* — light-editorial — 따뜻한 크림 화이트 */
     .theme-light-editorial {
-      background: #ffffff;
-      color: #0d1020;
+      background: var(--bg-cream);
+      color: #21433E;
     }
-    .theme-light-editorial .slide-ghost-num { color: rgba(0,0,0,0.05); }
+    .theme-light-editorial .slide-ghost-num { color: rgba(33,67,62,0.06); }
     .theme-light-editorial .s-tag {
-      background: rgba(13,204,90,0.08);
-      color: rgba(0,0,0,0.55);
-      border: 1px solid rgba(13,204,90,0.2);
+      background: rgba(196,243,189,0.35);
+      color: #21433E;
+      border: 1px solid rgba(125,203,160,0.4);
+      border-radius: 20px;
     }
-    .theme-light-editorial .s-subtitle { color: rgba(0,0,0,0.75); }
-    .theme-light-editorial .s-body { color: rgba(0,0,0,0.75); }
-    .theme-light-editorial .intro-item-label { color: #0d1020; }
-    .theme-light-editorial .intro-item-desc { color: rgba(0,0,0,0.5); }
-    .theme-light-editorial .section-group-val { color: #0d1020; }
-    .theme-light-editorial .culture-grid-label { color: #0d1020; }
-    .theme-light-editorial .culture-grid-desc { color: rgba(0,0,0,0.45); }
+    .theme-light-editorial .s-badge { border-color: var(--accent-dark); color: var(--accent-dark); }
+    .theme-light-editorial .s-subtitle { color: rgba(33,67,62,0.75); }
+    .theme-light-editorial .s-body { color: rgba(33,67,62,0.78); }
+    .theme-light-editorial .intro-item-label { color: #21433E; }
+    .theme-light-editorial .intro-item-desc { color: rgba(33,67,62,0.5); }
+    .theme-light-editorial .section-group-val { color: #21433E; }
+    .theme-light-editorial .culture-grid-label { color: #21433E; }
+    .theme-light-editorial .culture-grid-desc { color: rgba(33,67,62,0.45); }
+    .theme-light-editorial .title-sub-row .s-subtitle { border-left-color: var(--accent-dark); }
+    .theme-light-editorial .s-divider { background: var(--accent-dark); }
+    .theme-light-editorial .section-group-name { color: var(--accent-dark); }
+    .theme-light-editorial .intro-item-num { color: var(--accent-dark); }
+    .theme-light-editorial .culture-grid-num { color: var(--accent-dark); }
 
     /* ============================================================
        UI LAYER
@@ -358,8 +382,8 @@
     #progress-bar {
       height: 100%;
       width: 0%;
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent);
+      background: linear-gradient(90deg, #A1E4D0, #C4F3BD);
+      box-shadow: 0 0 12px rgba(196,243,189,0.6);
       transition: none;
     }
 
@@ -370,7 +394,7 @@
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.5);
     }
 
     /* Fullscreen button */
@@ -378,47 +402,58 @@
       position: absolute;
       top: 18px; right: 28px;
       width: 42px; height: 42px;
-      background: rgba(0,0,0,0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      color: rgba(255,255,255,0.65);
+      background: rgba(196,243,189,0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(196,243,189,0.25);
+      border-radius: 14px;
+      color: rgba(196,243,189,0.85);
       font-size: 17px;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       pointer-events: all;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s, transform 0.15s;
     }
-    #btn-fullscreen:hover { background: rgba(13,204,90,0.2); color: #fff; }
+    #btn-fullscreen:hover {
+      background: rgba(196,243,189,0.22);
+      transform: scale(1.05);
+    }
 
     /* Controls row */
     #controls {
       position: absolute;
-      bottom: 20px;
+      bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       align-items: center;
       gap: 14px;
       pointer-events: all;
+      background: rgba(15,35,24,0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(196,243,189,0.15);
+      border-radius: 40px;
+      padding: 8px 16px;
     }
 
     .ctrl-btn {
-      width: 44px; height: 44px;
+      width: 42px; height: 42px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.38);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.85);
-      font-size: 18px;
+      background: rgba(196,243,189,0.1);
+      border: 1px solid rgba(196,243,189,0.2);
+      color: rgba(196,243,189,0.9);
+      font-size: 17px;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.1s;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     }
-    .ctrl-btn:hover { background: rgba(13,204,90,0.28); }
-    .ctrl-btn:active { transform: scale(0.92); }
+    .ctrl-btn:hover {
+      background: rgba(196,243,189,0.22);
+      transform: scale(1.08);
+      box-shadow: 0 0 12px rgba(196,243,189,0.3);
+    }
+    .ctrl-btn:active { transform: scale(0.94); }
 
     /* Dot nav */
     #dots {
@@ -429,7 +464,7 @@
     .dot {
       width: 7px; height: 7px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.28);
+      background: rgba(196,243,189,0.25);
       cursor: pointer;
       transition: background 0.25s, width 0.3s, border-radius 0.3s;
       pointer-events: all;
@@ -438,7 +473,7 @@
       background: var(--accent);
       width: 22px;
       border-radius: 4px;
-      box-shadow: 0 0 6px var(--accent);
+      box-shadow: 0 0 8px rgba(196,243,189,0.5);
     }
 
     /* Pause overlay */
@@ -448,10 +483,10 @@
       transform: translate(-50%, -50%);
       width: 76px; height: 76px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.48);
+      background: rgba(15,35,24,0.55);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(196,243,189,0.25);
       display: flex; align-items: center; justify-content: center;
       font-size: 28px;
       color: #fff;
@@ -842,53 +877,57 @@ function startCanvas(idx) {
   let rafID;
 
   if (theme === 'dark-neon') {
-    /* Particle network — 미드나잇 블루 위 밝은 파티클 */
-    const pts = Array.from({ length: 70 }, () => ({
-      x:  Math.random() * W,
-      y:  Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r:  Math.random() * 1.5 + 0.5,
-      ph: Math.random() * Math.PI * 2
+    /* dark-neon: 새싹 파티클 네트워크 — 딥 포레스트 위 연두빛 별빛 */
+    const pts = Array.from({ length: 65 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.6 + 0.4,
+      ph: Math.random() * Math.PI * 2,
+      type: Math.random() > 0.6 ? 1 : 0   /* 0=dot, 1=tiny leaf shimmer */
     }));
 
     function drawNeon() {
       ctx.clearRect(0, 0, W, H);
       const t = Date.now() / 1000;
 
-      // 상단 우측 — 밝고 넓은 블루 glow
-      const gr = ctx.createRadialGradient(W * 0.75, H * 0.15, 0, W * 0.75, H * 0.15, W * 0.55);
-      const ga = 0.05 + 0.025 * Math.sin(t * 0.7);
-      gr.addColorStop(0, `rgba(80,140,255,${ga})`);
-      gr.addColorStop(0.5, `rgba(13,204,90,${ga * 0.6})`);
-      gr.addColorStop(1, 'rgba(13,204,90,0)');
-      ctx.fillStyle = gr;
-      ctx.fillRect(0, 0, W, H);
+      // 상단 우측 — 새싹 그린 + 옥빛 glow
+      const gr = ctx.createRadialGradient(W * 0.78, H * 0.14, 0, W * 0.78, H * 0.14, W * 0.55);
+      const ga = 0.06 + 0.03 * Math.sin(t * 0.6);
+      gr.addColorStop(0, `rgba(161,228,208,${ga})`);       /* soft jade */
+      gr.addColorStop(0.45, `rgba(196,243,189,${ga * 0.5})`); /* sprout green */
+      gr.addColorStop(1, 'rgba(196,243,189,0)');
+      ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H);
 
-      // Particles
+      // 좌하단 — 따뜻한 햇살 glow
+      const gr2 = ctx.createRadialGradient(W * 0.05, H * 0.9, 0, W * 0.05, H * 0.9, W * 0.4);
+      const ga2 = 0.04 + 0.02 * Math.sin(t * 0.4 + 1);
+      gr2.addColorStop(0, `rgba(196,243,189,${ga2})`);
+      gr2.addColorStop(1, 'rgba(196,243,189,0)');
+      ctx.fillStyle = gr2; ctx.fillRect(0, 0, W, H);
+
+      // 파티클
       pts.forEach(p => {
-        p.ph += 0.015;
+        p.ph += 0.012;
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
         if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-        const a = 0.2 + 0.2 * Math.sin(p.ph);
+        const a = 0.18 + 0.22 * Math.sin(p.ph);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(13,204,90,${a})`;
+        ctx.fillStyle = p.type ? `rgba(161,228,208,${a})` : `rgba(196,243,189,${a})`;
         ctx.fill();
       });
 
-      // Connections
+      // 연결선
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
           const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
           const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 120) {
+          if (d < 115) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(13,204,90,${0.1 * (1 - d / 120)})`;
+            ctx.strokeStyle = `rgba(196,243,189,${0.08 * (1 - d / 115)})`;
             ctx.lineWidth = 0.5;
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
             ctx.stroke();
           }
         }
@@ -898,15 +937,14 @@ function startCanvas(idx) {
     drawNeon();
 
   } else if (theme === 'dark-amber') {
-    /* 네이비 위 밝은 그리드 + 블루 glow */
+    /* dark-amber: 이끼 그리드 + 햇살 glow */
     function drawGrid() {
       ctx.clearRect(0, 0, W, H);
       const t = Date.now() / 5000;
-      const ox = Math.sin(t) * 25;
-      const oy = Math.cos(t * 0.8) * 18;
-      const gs = 70;
+      const ox = Math.sin(t) * 22; const oy = Math.cos(t * 0.8) * 16;
+      const gs = 68;
 
-      ctx.strokeStyle = 'rgba(100,140,255,0.06)';
+      ctx.strokeStyle = 'rgba(196,243,189,0.055)';
       ctx.lineWidth = 1;
       for (let x = (ox % gs) - gs; x < W + gs; x += gs) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
@@ -915,44 +953,56 @@ function startCanvas(idx) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
       }
 
-      // 좌하단 — 그린 glow
+      // 좌하단 — 새싹 glow
       const t2 = Date.now() / 1000;
-      const a2 = 0.04 + 0.02 * Math.sin(t2 * 0.6);
-      const gr2 = ctx.createRadialGradient(W * 0.1, H * 0.88, 0, W * 0.1, H * 0.88, W * 0.55);
-      gr2.addColorStop(0, `rgba(13,204,90,${a2 * 2})`);
-      gr2.addColorStop(1, 'rgba(13,204,90,0)');
-      ctx.fillStyle = gr2;
-      ctx.fillRect(0, 0, W, H);
+      const a2 = 0.05 + 0.025 * Math.sin(t2 * 0.55);
+      const gr2 = ctx.createRadialGradient(W * 0.1, H * 0.87, 0, W * 0.1, H * 0.87, W * 0.52);
+      gr2.addColorStop(0, `rgba(196,243,189,${a2 * 1.8})`);
+      gr2.addColorStop(0.5, `rgba(161,228,208,${a2 * 0.8})`);
+      gr2.addColorStop(1, 'rgba(196,243,189,0)');
+      ctx.fillStyle = gr2; ctx.fillRect(0, 0, W, H);
+
+      // 우상단 — 옥빛 보조 glow
+      const a3 = 0.03 + 0.015 * Math.sin(t2 * 0.4 + 2);
+      const gr3 = ctx.createRadialGradient(W * 0.9, H * 0.1, 0, W * 0.9, H * 0.1, W * 0.4);
+      gr3.addColorStop(0, `rgba(161,228,208,${a3})`);
+      gr3.addColorStop(1, 'rgba(161,228,208,0)');
+      ctx.fillStyle = gr3; ctx.fillRect(0, 0, W, H);
 
       rafID = requestAnimationFrame(drawGrid);
     }
     drawGrid();
 
   } else if (theme === 'light-editorial') {
-    /* 화이트 위 섬세한 도트 — 더 밝고 선명하게 */
+    /* light-editorial: 크림 위 봄비 도트 물결 + 연두 glow */
     let t = 0;
     function drawLight() {
       ctx.clearRect(0, 0, W, H);
-      t += 0.005;
-      const sp = 48;
+      t += 0.004;
+      const sp = 46;
       for (let x = sp; x < W; x += sp) {
         for (let y = sp; y < H; y += sp) {
-          const dist = Math.hypot(x - W * 0.8, y - H * 0.2);
-          const wave = Math.sin(dist * 0.014 - t * 1.8) * 0.5 + 0.5;
-          const a = 0.06 + wave * 0.14;
+          const dist = Math.hypot(x - W * 0.75, y - H * 0.25);
+          const wave = Math.sin(dist * 0.013 - t * 1.6) * 0.5 + 0.5;
+          const a = 0.04 + wave * 0.13;
           ctx.beginPath();
-          ctx.arc(x, y, 1.2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(13,204,90,${a})`;
+          ctx.arc(x, y, 1.3, 0, Math.PI * 2);
+          /* 거리에 따라 sprout ↔ jade 색 전환 */
+          const blend = Math.min(dist / (W * 0.6), 1);
+          const r = Math.round(196 + (161-196)*blend);
+          const g = Math.round(243 + (228-243)*blend);
+          const b = Math.round(189 + (208-189)*blend);
+          ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
           ctx.fill();
         }
       }
-      // 우상단 — 연한 그린 glow
-      const a3 = 0.05 + 0.025 * Math.sin(t * 0.9);
-      const gr3 = ctx.createRadialGradient(W * 0.88, H * 0.1, 0, W * 0.88, H * 0.1, W * 0.5);
-      gr3.addColorStop(0, `rgba(13,204,90,${a3})`);
-      gr3.addColorStop(1, 'rgba(13,204,90,0)');
-      ctx.fillStyle = gr3;
-      ctx.fillRect(0, 0, W, H);
+      // 우상단 — 연두 햇살 glow
+      const a4 = 0.06 + 0.03 * Math.sin(t * 0.85);
+      const gr4 = ctx.createRadialGradient(W*0.88, H*0.1, 0, W*0.88, H*0.1, W*0.48);
+      gr4.addColorStop(0, `rgba(196,243,189,${a4})`);
+      gr4.addColorStop(0.5, `rgba(224,242,241,${a4 * 0.5})`);  /* sky blue tint */
+      gr4.addColorStop(1, 'rgba(196,243,189,0)');
+      ctx.fillStyle = gr4; ctx.fillRect(0, 0, W, H);
 
       rafID = requestAnimationFrame(drawLight);
     }
