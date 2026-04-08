@@ -1,0 +1,176 @@
+{
+  "config": {
+    "duration": 15,
+    "accentColor": "#0dcc5a"
+  },
+  "slides": [
+    {
+      "id": 1,
+      "theme": "dark-neon",
+      "type": "intro",
+      "tag": "일을 대하는 태도",
+      "title": "핵심가치 3가지",
+      "body": "일과 업무의 판단 기준이 모호할 때,\n이 3가지 가치를 기준으로 판단합니다",
+      "items": [
+        { "number": "01", "label": "고객가치", "desc": "유저를 위한" },
+        { "number": "02", "label": "혁신", "desc": "더 나은 답" },
+        { "number": "03", "label": "신뢰", "desc": "있는 그대로" }
+      ]
+    },
+    {
+      "id": 2,
+      "theme": "dark-amber",
+      "type": "value",
+      "tag": "핵심가치 01",
+      "title": "유저를 위한",
+      "badge": "고객가치",
+      "body": "우리의 모든 '일'은\n유저를 위한 가치로 연결됩니다"
+    },
+    {
+      "id": 3,
+      "theme": "light-editorial",
+      "type": "value",
+      "tag": "핵심가치 02",
+      "title": "더 나은 답",
+      "badge": "혁신",
+      "body": "원래 그런 것은 없습니다.\n더 나은 답은 항상 있습니다"
+    },
+    {
+      "id": 4,
+      "theme": "dark-amber",
+      "type": "value",
+      "tag": "핵심가치 03",
+      "title": "있는 그대로",
+      "badge": "신뢰",
+      "body": "정보는 있는 그대로 투명하게 공유합니다.\n결정되면 결정을 신뢰합니다"
+    },
+    {
+      "id": 5,
+      "theme": "dark-neon",
+      "type": "section",
+      "tag": "동료를 대하는 태도 / 문제를 대하는 태도",
+      "title": "일하는방식 5가지",
+      "items": [
+        { "group": "동료를 대하는 태도", "values": ["진정성", "협업"] },
+        { "group": "문제를 대하는 태도", "values": ["문제해결", "빠른실행", "책임감"] }
+      ]
+    },
+    {
+      "id": 6,
+      "theme": "light-editorial",
+      "type": "way",
+      "tag": "일하는방식 01",
+      "title": "진정성",
+      "subtitle": "투명하고, 솔직하게",
+      "badge": "동료를 대하는 태도",
+      "body": "우리는 상호존중을 기반으로 일하며,\n회사를 위해서 숨기지 않고,\n솔직하게 말합니다"
+    },
+    {
+      "id": 7,
+      "theme": "dark-amber",
+      "type": "way",
+      "tag": "일하는방식 02",
+      "title": "협업",
+      "subtitle": "함께, 성장하기",
+      "badge": "동료를 대하는 태도",
+      "body": "우리는 혼자가 아닌,\n함께 일하며 성장합니다"
+    },
+    {
+      "id": 8,
+      "theme": "light-editorial",
+      "type": "way",
+      "tag": "일하는방식 03",
+      "title": "문제해결",
+      "subtitle": "발견하고, 해결하기",
+      "badge": "문제를 대하는 태도",
+      "body": "문제는 문제를 '발견하는 순간'부터 시작합니다.\n우리는 문제를 숨기지 않고,\n함께 해결합니다"
+    },
+    {
+      "id": 9,
+      "theme": "dark-amber",
+      "type": "way",
+      "tag": "일하는방식 04",
+      "title": "빠른실행",
+      "subtitle": "작고, 빠르게",
+      "badge": "문제를 대하는 태도",
+      "body": "우리는 작게 시도하고,\n빠르게 검증합니다"
+    },
+    {
+      "id": 10,
+      "theme": "light-editorial",
+      "type": "way",
+      "tag": "일하는방식 05",
+      "title": "책임감",
+      "subtitle": "주도적으로, 마무리까지",
+      "badge": "문제를 대하는 태도",
+      "body": "우리는 내가 시작한 일은 책임지고,\n끝까지 마무리합니다"
+    },
+    {
+      "id": 11,
+      "theme": "dark-neon",
+      "type": "culture-intro",
+      "tag": "조직문화",
+      "title": "조직문화 1.0\n환경설정",
+      "items": [
+        { "number": "1", "desc": "진정성 있는 소통을 위한", "label": "'님' 문화" },
+        { "number": "2", "desc": "투명한 소통을 위한", "label": "안심톡" },
+        { "number": "3", "desc": "우리의 관계 형성을 위한", "label": "랜덤런치" },
+        { "number": "4", "desc": "업무 효율을 높이기 위한", "label": "코어워킹" }
+      ]
+    },
+    {
+      "id": 12,
+      "theme": "dark-amber",
+      "type": "culture-item",
+      "tag": "조직문화 01",
+      "title": "'님' 문화",
+      "subtitle": "인욱'님'으로 불러주세요",
+      "badge": "진정성 있는 소통",
+      "body": "상호 존중을 바탕으로,\n눈치 보지 않고 명확하게\n사실과 의견을 나눕니다"
+    },
+    {
+      "id": 13,
+      "theme": "light-editorial",
+      "type": "culture-item",
+      "tag": "조직문화 02",
+      "title": "안심톡",
+      "subtitle": "회사를 위한 개선 의견을 보내주세요!",
+      "badge": "투명한 소통",
+      "body": "누구나 자유롭게 묻고 제안하는 공간,\n명확하고 투명한 피드백을 약속합니다"
+    },
+    {
+      "id": 14,
+      "theme": "dark-amber",
+      "type": "culture-item",
+      "tag": "조직문화 03",
+      "title": "랜덤런치",
+      "subtitle": "평소 대화 못 한 동료와 함께!",
+      "badge": "관계 형성",
+      "body": "자유롭게 소통하고,\n여러 구성원과 관계를 맺어보세요!"
+    },
+    {
+      "id": 15,
+      "theme": "light-editorial",
+      "type": "culture-item",
+      "tag": "조직문화 04",
+      "title": "코어워킹",
+      "subtitle": "업무 집중으로 실행 속도를 높여요!",
+      "badge": "업무 효율",
+      "body": "코어워킹 시간에는 No Meeting, No Slack\n매주 월요일 10:10 ~ 12:10\n동료의 시간을 존중하고 배려해주세요"
+    },
+    {
+      "id": 16,
+      "theme": "dark-neon",
+      "type": "qna-dashboard",
+      "tag": "익명채널 Q&A",
+      "title": "안심톡 현황"
+    },
+    {
+      "id": 17,
+      "theme": "dark-amber",
+      "type": "qna-detail",
+      "tag": "익명채널 Q&A",
+      "title": "전체 내역"
+    }
+  ]
+}
