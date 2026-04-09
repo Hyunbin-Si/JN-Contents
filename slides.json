@@ -19,7 +19,7 @@
     },
     {
       "id": 2,
-      "theme": "dark-amber",
+      "theme": "dark-neon",
       "type": "value",
       "tag": "핵심가치 01",
       "title": "유저를 위한",
@@ -28,7 +28,7 @@
     },
     {
       "id": 3,
-      "theme": "light-editorial",
+      "theme": "dark-neon",
       "type": "value",
       "tag": "핵심가치 02",
       "title": "더 나은 답",
@@ -37,7 +37,7 @@
     },
     {
       "id": 4,
-      "theme": "dark-amber",
+      "theme": "dark-neon",
       "type": "value",
       "tag": "핵심가치 03",
       "title": "있는 그대로",
@@ -57,7 +57,7 @@
     },
     {
       "id": 6,
-      "theme": "light-editorial",
+      "theme": "dark-neon",
       "type": "way",
       "tag": "일하는방식 01",
       "title": "진정성",
@@ -67,7 +67,7 @@
     },
     {
       "id": 7,
-      "theme": "dark-amber",
+      "theme": "dark-neon",
       "type": "way",
       "tag": "일하는방식 02",
       "title": "협업",
@@ -77,7 +77,7 @@
     },
     {
       "id": 8,
-      "theme": "light-editorial",
+      "theme": "dark-neon",
       "type": "way",
       "tag": "일하는방식 03",
       "title": "문제해결",
@@ -87,7 +87,7 @@
     },
     {
       "id": 9,
-      "theme": "dark-amber",
+      "theme": "dark-neon",
       "type": "way",
       "tag": "일하는방식 04",
       "title": "빠른실행",
@@ -97,7 +97,7 @@
     },
     {
       "id": 10,
-      "theme": "light-editorial",
+      "theme": "dark-neon",
       "type": "way",
       "tag": "일하는방식 05",
       "title": "책임감",
@@ -120,7 +120,7 @@
     },
     {
       "id": 12,
-      "theme": "dark-amber",
+      "theme": "dark-neon",
       "type": "culture-item",
       "tag": "조직문화 01",
       "title": "'님' 문화",
@@ -130,7 +130,7 @@
     },
     {
       "id": 13,
-      "theme": "light-editorial",
+      "theme": "dark-neon",
       "type": "culture-item",
       "tag": "조직문화 02",
       "title": "안심톡",
@@ -140,7 +140,7 @@
     },
     {
       "id": 14,
-      "theme": "dark-amber",
+      "theme": "dark-neon",
       "type": "culture-item",
       "tag": "조직문화 03",
       "title": "랜덤런치",
@@ -150,13 +150,29 @@
     },
     {
       "id": 15,
-      "theme": "light-editorial",
+      "theme": "dark-neon",
       "type": "culture-item",
       "tag": "조직문화 04",
       "title": "코어워킹",
       "subtitle": "업무 집중으로 실행 속도를 높여요!",
       "badge": "업무 효율",
       "body": "코어워킹 시간에는 No Meeting, No Slack\n매주 월요일 10:10 ~ 12:10\n동료의 시간을 존중하고 배려해주세요"
+    },
+    {
+      "id": 16,
+      "theme": "dark-neon",
+      "type": "qna-dashboard",
+      "tag": "익명채널 Q&A",
+      "title": "안심톡 현황",
+      "duration": 20
+    },
+    {
+      "id": 17,
+      "theme": "dark-neon",
+      "type": "qna-detail",
+      "tag": "익명채널 Q&A",
+      "title": "전체 내역",
+      "duration": 20
     }
   ]
 }
