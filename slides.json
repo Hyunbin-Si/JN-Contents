@@ -1,7 +1,7 @@
 {
   "config": {
-    "duration": 15,
-    "accentColor": "#0dcc5a"
+    "duration": 20,
+    "accentColor": "#1AAED1"
   },
   "slides": [
     {
@@ -18,7 +18,7 @@
       "type": "vision",
       "tag": "Vision",
       "title": "대한민국 최대\n__신뢰 기반__\n가치 교환 시스템.",
-      "translate": "플랫폼이 아닙니다.\n시스템 입니다."
+      "translate": "플랫폼이 아닙니다.\n시스템입니다."
     },
     {
       "id": 3,
@@ -28,211 +28,263 @@
     },
     {
       "id": 4,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "intro",
-      "tag": "일을 대하는 태도",
-      "title": "핵심가치 3가지",
-      "body": "일과 업무의 판단 기준이 모호할 때,\n이 3가지 가치를 기준으로 판단합니다",
+      "kicker": "일을 대하는 태도",
+      "kickerEn": "VALUES",
+      "num": "03",
+      "title": "핵심가치",
+      "body": "일과 업무의 판단 기준이 모호할 때, 이 세 가지 가치를 기준으로 판단합니다.",
       "items": [
-        { "number": "01", "label": "고객가치", "desc": "유저를 위한" },
-        { "number": "02", "label": "혁신",     "desc": "더 나은 답" },
-        { "number": "03", "label": "신뢰",     "desc": "있는 그대로" }
-      ]
+        { "num": "01", "tag": "CUSTOMER", "name": "고객가치", "desc": "유저를 위한.\n모든 일은 결국 유저의 가치로 연결됩니다." },
+        { "num": "02", "tag": "INNOVATION", "name": "혁신", "desc": "더 나은 답.\n원래 그런 것은 없습니다." },
+        { "num": "03", "tag": "TRUST", "name": "신뢰", "desc": "있는 그대로.\n정보는 투명하게 공유하고 결정을 신뢰합니다." }
+      ],
+      "topbar": { "leftB": "핵심가치" },
+      "botbar": { "leftA": "핵심가치", "leftB": "3가지 원칙", "leftBBlue": true, "right": "2026 · 상반기" }
     },
     {
       "id": 5,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "value",
       "tag": "핵심가치 01",
-      "title": "유저를 위한",
-      "badge": "고객가치",
-      "body": "우리의 모든 '일'은\n유저를 위한 가치로 연결됩니다"
+      "subtag": "고객가치",
+      "title": "__유저__를 위한",
+      "body": "우리의 모든 '일'은\n__유저를 위한 가치__로 연결됩니다.",
+      "indexItems": ["01 · 고객가치", "02 · 혁신", "03 · 신뢰"],
+      "indexCur": 0,
+      "topbar": { "leftB": "핵심가치" },
+      "botbar": { "leftA": "핵심가치", "leftB": "01 · 고객가치", "leftBBlue": true, "right": "유저를 위한" }
     },
     {
       "id": 6,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "value",
       "tag": "핵심가치 02",
-      "title": "더 나은 답",
-      "badge": "혁신",
-      "body": "원래 그런 것은 없습니다.\n더 나은 답은 항상 있습니다"
+      "subtag": "혁신",
+      "title": "더 나은 __답__",
+      "body": "원래 그런 것은 없습니다.\n더 나은 답은 __항상 있습니다.__",
+      "indexItems": ["01 · 고객가치", "02 · 혁신", "03 · 신뢰"],
+      "indexCur": 1,
+      "topbar": { "leftB": "핵심가치" },
+      "botbar": { "leftA": "핵심가치", "leftB": "02 · 혁신", "leftBBlue": true, "right": "더 나은 답" }
     },
     {
       "id": 7,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "value",
       "tag": "핵심가치 03",
-      "title": "있는 그대로",
-      "badge": "신뢰",
-      "body": "정보는 있는 그대로 투명하게 공유합니다.\n결정되면 결정을 신뢰합니다"
+      "subtag": "신뢰",
+      "title": "있는 __그대로__",
+      "body": "정보는 있는 그대로 __투명하게__ 공유합니다.\n결정되면 __결정을 신뢰__합니다.",
+      "indexItems": ["01 · 고객가치", "02 · 혁신", "03 · 신뢰"],
+      "indexCur": 2,
+      "topbar": { "leftB": "핵심가치" },
+      "botbar": { "leftA": "핵심가치", "leftB": "03 · 신뢰", "leftBBlue": true, "right": "있는 그대로" }
     },
     {
       "id": 8,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "section",
-      "tag": "동료를 대하는 태도 / 문제를 대하는 태도",
-      "title": "일하는방식 5가지",
-      "items": [
-        { "group": "동료를 대하는 태도", "values": ["진정성", "협업"] },
-        { "group": "문제를 대하는 태도", "values": ["문제해결", "빠른실행", "책임감"] }
-      ]
+      "kicker": "동료를 대하는 태도 · 문제를 대하는 태도",
+      "kickerEn": "WAY OF WORKING",
+      "num": "05",
+      "title": "일하는방식",
+      "body": "일과 동료를 대하는 다섯 가지 원칙. 우리가 매일 실천하는 방식입니다.",
+      "groups": [
+        {
+          "cap": "GROUP A",
+          "name": "동료를 대하는 태도",
+          "values": [
+            { "num": "01", "name": "진정성", "sub": "__투명하고__, 솔직하게" },
+            { "num": "02", "name": "협업",   "sub": "__함께__, 성장하기" }
+          ]
+        },
+        {
+          "cap": "GROUP B",
+          "name": "문제를 대하는 태도",
+          "values": [
+            { "num": "03", "name": "문제해결", "sub": "__발견하고__, 해결하기" },
+            { "num": "04", "name": "빠른실행", "sub": "__작고__, 빠르게" },
+            { "num": "05", "name": "책임감",   "sub": "__주도적으로__, 마무리까지" }
+          ]
+        }
+      ],
+      "topbar": { "leftB": "일하는방식" },
+      "botbar": { "leftA": "일하는방식", "leftB": "5가지 원칙 · 2 그룹", "leftBBlue": true, "right": "2026 · 상반기" }
     },
     {
       "id": 9,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "way",
-      "tag": "일하는방식 01",
+      "numLabel": "01",
+      "categoryLabel": "일하는방식",
+      "category": "동료를 대하는 태도",
       "title": "진정성",
-      "subtitle": "투명하고, 솔직하게",
-      "badge": "동료를 대하는 태도",
-      "body": "우리는 상호존중을 기반으로 일하며,\n회사를 위해서 숨기지 않고,\n솔직하게 말합니다"
+      "subBold": "투명하고",
+      "subRest": ", 솔직하게",
+      "body": "우리는 __상호존중__을 기반으로 일하며, 회사를 위해서 숨기지 않고 __솔직하게 말합니다.__",
+      "topbar": { "leftB": "일하는방식" },
+      "botbar": { "leftA": "일하는방식", "leftB": "01 / 05", "leftBBlue": true, "right": "투명하고, 솔직하게" }
     },
     {
       "id": 10,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "way",
-      "tag": "일하는방식 02",
+      "numLabel": "02",
+      "categoryLabel": "일하는방식",
+      "category": "동료를 대하는 태도",
       "title": "협업",
-      "subtitle": "함께, 성장하기",
-      "badge": "동료를 대하는 태도",
-      "body": "우리는 혼자가 아닌,\n함께 일하며 성장합니다"
+      "subBold": "함께",
+      "subRest": ", 성장하기",
+      "body": "우리는 혼자가 아닌, __함께 일하며 성장__합니다.",
+      "topbar": { "leftB": "일하는방식" },
+      "botbar": { "leftA": "일하는방식", "leftB": "02 / 05", "leftBBlue": true, "right": "함께, 성장하기" }
     },
     {
       "id": 11,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "way",
-      "tag": "일하는방식 03",
+      "numLabel": "03",
+      "categoryLabel": "일하는방식",
+      "category": "문제를 대하는 태도",
       "title": "문제해결",
-      "subtitle": "발견하고, 해결하기",
-      "badge": "문제를 대하는 태도",
-      "body": "문제는 문제를 '발견하는 순간'부터 시작합니다.\n우리는 문제를 숨기지 않고,\n함께 해결합니다"
+      "subBold": "발견하고",
+      "subRest": ", 해결하기",
+      "body": "문제는 문제를 __'발견하는 순간'__부터 시작합니다.\n우리는 문제를 숨기지 않고, 함께 __해결__합니다.",
+      "topbar": { "leftB": "일하는방식" },
+      "botbar": { "leftA": "일하는방식", "leftB": "03 / 05", "leftBBlue": true, "right": "발견하고, 해결하기" }
     },
     {
       "id": 12,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "way",
-      "tag": "일하는방식 04",
+      "numLabel": "04",
+      "categoryLabel": "일하는방식",
+      "category": "문제를 대하는 태도",
       "title": "빠른실행",
-      "subtitle": "작고, 빠르게",
-      "badge": "문제를 대하는 태도",
-      "body": "우리는 작게 시도하고,\n빠르게 검증합니다"
+      "subBold": "작고",
+      "subRest": ", 빠르게",
+      "body": "우리는 __작게 시도__하고, __빠르게 검증__합니다.",
+      "topbar": { "leftB": "일하는방식" },
+      "botbar": { "leftA": "일하는방식", "leftB": "04 / 05", "leftBBlue": true, "right": "작고, 빠르게" }
     },
     {
       "id": 13,
-      "theme": "dark-neon",
+      "theme": "summer",
       "type": "way",
-      "tag": "일하는방식 05",
+      "numLabel": "05",
+      "categoryLabel": "일하는방식",
+      "category": "문제를 대하는 태도",
       "title": "책임감",
-      "subtitle": "주도적으로, 마무리까지",
-      "badge": "문제를 대하는 태도",
-      "body": "우리는 내가 시작한 일은 책임지고,\n끝까지 마무리합니다"
+      "subBold": "주도적으로",
+      "subRest": ", 마무리까지",
+      "body": "우리는 __내가 시작한 일은 책임지고__, 끝까지 마무리합니다.",
+      "topbar": { "leftB": "일하는방식" },
+      "botbar": { "leftA": "일하는방식", "leftB": "05 / 05", "leftBBlue": true, "right": "주도적으로, 마무리까지" }
     },
     {
       "id": 14,
-      "theme": "dark-neon",
-      "type": "culture-intro",
-      "tag": "조직문화",
-      "title": "조직문화 1.0\n환경설정",
+      "theme": "summer",
+      "type": "intro",
+      "kicker": "조직문화 1.0",
+      "kickerEn": "CULTURE · ENVIRONMENT",
+      "num": "04",
+      "title": "환경설정",
+      "body": "우리가 일하기 위한 네 가지 환경. 매일의 약속입니다.",
       "items": [
-        { "number": "1", "desc": "진정성 있는 소통을 위한", "label": "'님' 문화" },
-        { "number": "2", "desc": "투명한 소통을 위한",     "label": "안심톡" },
-        { "number": "3", "desc": "우리의 관계 형성을 위한", "label": "랜덤런치" },
-        { "number": "4", "desc": "업무 효율을 높이기 위한", "label": "코어워킹" }
-      ]
+        { "num": "01", "tag": "소통",   "name": "'님' 문화",  "desc": "진정성 있는 소통을 위한." },
+        { "num": "02", "tag": "피드백", "name": "안심톡",     "desc": "투명한 소통을 위한." },
+        { "num": "03", "tag": "관계",   "name": "랜덤런치",   "desc": "우리의 관계 형성을 위한." },
+        { "num": "04", "tag": "효율",   "name": "코어워킹",   "desc": "업무 효율을 높이기 위한." }
+      ],
+      "topbar": { "leftB": "조직문화" },
+      "botbar": { "leftA": "조직문화", "leftB": "4가지 환경", "leftBBlue": true, "right": "2026 · 상반기" }
     },
     {
       "id": 15,
-      "theme": "dark-neon",
-      "type": "culture-item",
-      "tag": "조직문화 01",
+      "theme": "summer",
+      "type": "way",
+      "numLabel": "01",
+      "categoryLabel": "조직문화",
+      "category": "진정성 있는 소통",
       "title": "'님' 문화",
-      "subtitle": "인욱'님'으로 불러주세요",
-      "badge": "진정성 있는 소통",
-      "body": "상호 존중을 바탕으로,\n눈치 보지 않고 명확하게\n사실과 의견을 나눕니다"
+      "subBold": "인욱'님'",
+      "subRest": "으로 불러주세요",
+      "body": "상호 존중을 바탕으로, 눈치 보지 않고 명확하게 __사실과 의견을 나눕니다.__",
+      "topbar": { "leftB": "조직문화" },
+      "botbar": { "leftA": "조직문화", "leftB": "01 / 04", "leftBBlue": true, "right": "진정성 있는 소통" }
     },
     {
       "id": 16,
-      "theme": "dark-neon",
-      "type": "culture-item",
-      "tag": "조직문화 02",
+      "theme": "summer",
+      "type": "way",
+      "numLabel": "02",
+      "categoryLabel": "조직문화",
+      "category": "투명한 소통",
       "title": "안심톡",
-      "subtitle": "회사를 위한 개선 의견을 보내주세요!",
-      "badge": "투명한 소통",
-      "body": "누구나 자유롭게 묻고 제안하는 공간,\n명확하고 투명한 피드백을 약속합니다"
+      "subBold": "회사를 위한",
+      "subRest": " 개선 의견을 보내주세요!",
+      "body": "누구나 자유롭게 묻고 제안하는 공간, __명확하고 투명한 피드백__을 약속합니다.",
+      "topbar": { "leftB": "조직문화" },
+      "botbar": { "leftA": "조직문화", "leftB": "02 / 04", "leftBBlue": true, "right": "투명한 소통" }
     },
     {
       "id": 17,
-      "theme": "dark-neon",
-      "type": "culture-item",
-      "tag": "조직문화 03",
+      "theme": "summer",
+      "type": "way",
+      "numLabel": "03",
+      "categoryLabel": "조직문화",
+      "category": "관계 형성",
       "title": "랜덤런치",
-      "subtitle": "평소 대화 못 한 동료와 함께!",
-      "badge": "관계 형성",
-      "body": "자유롭게 소통하고,\n여러 구성원과 관계를 맺어보세요"
+      "subBold": "평소 대화 못 한",
+      "subRest": " 동료와 함께!",
+      "body": "자유롭게 소통하고, __여러 구성원과 관계__를 맺어보세요.",
+      "topbar": { "leftB": "조직문화" },
+      "botbar": { "leftA": "조직문화", "leftB": "03 / 04", "leftBBlue": true, "right": "관계 형성" }
     },
     {
       "id": 18,
-      "theme": "dark-neon",
-      "type": "culture-item",
-      "tag": "조직문화 04",
+      "theme": "summer",
+      "type": "way",
+      "numLabel": "04",
+      "categoryLabel": "조직문화",
+      "category": "업무 효율",
       "title": "코어워킹",
-      "subtitle": "업무 집중으로 실행 속도를 높여요!",
-      "badge": "업무 효율",
-      "body": "코어워킹 시간에는 No Meeting, No Slack\n매주 월요일 10:10 ~ 12:10\n동료의 시간을 존중하고 배려해주세요"
+      "subBold": "업무 집중",
+      "subRest": "으로 실행 속도를 높여요!",
+      "body": "코어워킹 시간에는 __No Meeting, No Slack.__\n매주 월요일 10:10 ~ 12:10, 동료의 시간을 존중하고 배려해주세요.",
+      "topbar": { "leftB": "조직문화" },
+      "botbar": { "leftA": "조직문화", "leftB": "04 / 04", "leftBBlue": true, "right": "업무 효율" }
     },
     {
       "id": 19,
-      "theme": "dark-neon",
-      "type": "qna-dashboard",
-      "tag": "익명채널 Q&A",
-      "title": "안심톡 현황",
-      "duration": 20
+      "theme": "summer",
+      "type": "cover",
+      "duration": 15,
+      "pretitle": "2026 상반기 성과평가",
+      "title": "상반기\n__성과평가__가\n시작됩니다.",
+      "sideItems": [
+        { "label": "평가 기간", "value": "6월 18일<span class=\"arrow\"> → </span>7월 10일" },
+        { "label": "시작까지", "value": "{{dday(2026-06-18)}}", "style": "cyan" }
+      ],
+      "topbar": { "leftB": "성과평가 안내", "right": "2026 · 상반기", "rightBlue": true },
+      "botbar": { "right": "인사팀 · People" }
     },
     {
       "id": 20,
-      "theme": "dark-neon",
-      "type": "qna-detail",
-      "tag": "익명채널 Q&A",
-      "title": "전체 내역",
-      "duration": 20
-    },
-    {
-      "id": 21,
-      "theme": "ax-bright",
-      "type": "ax-title",
-      "duration": 15
-    },
-    {
-      "id": 22,
-      "theme": "ax-bright",
-      "type": "ax-match",
+      "theme": "summer",
+      "type": "sched",
       "duration": 30,
-      "kicker": "AI Challenge",
-      "headline": "__AI 수용성__을 높이는,\n중고나라 AI 챌린지",
-      "roster": [
-        { "name": "강성연", "task": "검색 사전 검증 자동화" },
-        { "name": "김명환", "task": "개발 워크플로우 자동화" },
-        { "name": "김민기", "task": "VLM 기반 사기 탐지" },
-        { "name": "김성은", "task": "뉴스 모니터링 서비스 개발" },
-        { "name": "김소현", "task": "셀러 정산 자동화" },
-        { "name": "김지미", "task": "LLM 기반 자연어 데이터 자동화 환경 구축" },
-        { "name": "김호준", "task": "검색 CS 문의 업무 자동화" },
-        { "name": "문예솔", "task": "디자인 시스템 개선" },
-        { "name": "박세리", "task": "이상거래 모니터링 리포트 자동화" },
-        { "name": "박인혜", "task": "페이모니터링 구글시트 입력 자동화" },
-        { "name": "시현빈", "task": "업무 자동화 대시보드 구축" },
-        { "name": "안혜림", "task": "모니터링 대시보드 자동화" },
-        { "name": "유경호", "task": "LLM 기반 자연어 데이터 조회 및 시각화 환경 구축" },
-        { "name": "이용준", "task": "기술 히스토리 자산화" },
-        { "name": "이진희", "task": "경쟁 C2C 플랫폼 정책·서비스 리서치 자동화" },
-        { "name": "이학준", "task": "일일 앱 거래액, 안심결제율 및 우회거래율 대시보드 구축" },
-        { "name": "전희진", "task": "디자인 시스템 신규 구축" },
-        { "name": "정진영", "task": "서비스 법무 검토 사전 체크" },
-        { "name": "조상현", "task": "업무 자동화 : 시스템 환경에서의 트러블슈팅" },
-        { "name": "채은빈", "task": "중고거래 분쟁 판단 및 답변 초안 자동화 시스템 구축" }
-        { "name": "홍승연", "task": "QA 시나리오 자동 생성 및 회귀 테스트 자동화" }
-        { "name": "이혜민", "task": "디자인 시스템 1.5 고도화" }
-      ]
+      "title": "__상반기__성과평가 진행중",
+      "milestones": [
+        { "num": "01", "stage": "1단계", "name": "셀프평가",     "date": "6<span class=\"sep\">.</span>18<span class=\"sep\"> — </span>6<span class=\"sep\">.</span>24", "startDate": "2026-06-18", "endDate": "2026-06-24" },
+        { "num": "02", "stage": "2단계", "name": "평가자 평가", "date": "6<span class=\"sep\">.</span>25<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>01", "startDate": "2026-06-25", "endDate": "2026-07-01" },
+        { "num": "03", "stage": "3단계", "name": "1on1 피드백", "date": "7<span class=\"sep\">.</span>02<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>08", "startDate": "2026-07-02", "endDate": "2026-07-08" },
+        { "num": "04", "stage": "4단계", "name": "종료",         "date": "~ 7<span class=\"sep\">.</span>10",                                                                                                "startDate": "2026-07-09", "endDate": "2026-07-10" }
+      ],
+      "topbar": { "leftB": "일정 안내", "right": "2026 · 상반기", "rightBlue": true },
+      "botbar": { "leftA": "일정 안내", "leftB": "4주 · 4단계", "leftBBlue": true, "right": "인사팀 · People" }
     }
   ]
 }
