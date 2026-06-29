@@ -633,14 +633,14 @@ html, body {
 .sched-flow {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   padding-top: clamp(20px, 2.4vh, 32px);
   align-self: stretch;
 }
 .flow-track {
   position: absolute;
   top: calc(clamp(20px, 2.4vh, 32px) + clamp(32px, 3.2vw, 44px) - 2px);
-  left: 12.5%; right: 12.5%;
+  left: 10%; right: 10%;
   height: 4px;
   background: var(--rule);
   border-radius: 2px;

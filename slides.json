@@ -263,10 +263,10 @@
       "type": "cover",
       "duration": 15,
       "pretitle": "2026 상반기 성과평가",
-      "title": "상반기\n__성과평가__가\n시작됩니다.",
+      "title": "상반기\n__성과평가__가\n진행됩니다.",
       "sideItems": [
-        { "label": "평가 기간", "value": "6월 18일<span class=\"arrow\"> → </span>7월 10일" },
-        { "label": "시작까지", "value": "{{dday(2026-06-18)}}", "style": "cyan" }
+        { "label": "평가 기간", "value": "6월 29일<span class=\"arrow\"> → </span>7월 10일" },
+        { "label": "종료까지", "value": "{{dday(2026-07-10)}}", "style": "cyan" }
       ],
       "topbar": { "leftB": "성과평가 안내", "right": "2026 · 상반기", "rightBlue": true },
       "botbar": { "right": "인사팀 · People" }
@@ -278,13 +278,14 @@
       "duration": 30,
       "title": "__상반기__성과평가 진행중",
       "milestones": [
-        { "num": "01", "stage": "1단계", "name": "셀프평가",     "date": "6<span class=\"sep\">.</span>18<span class=\"sep\"> — </span>6<span class=\"sep\">.</span>24", "startDate": "2026-06-18", "endDate": "2026-06-24" },
-        { "num": "02", "stage": "2단계", "name": "평가자 평가", "date": "6<span class=\"sep\">.</span>25<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>01", "startDate": "2026-06-25", "endDate": "2026-07-01" },
-        { "num": "03", "stage": "3단계", "name": "1on1 피드백", "date": "7<span class=\"sep\">.</span>02<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>08", "startDate": "2026-07-02", "endDate": "2026-07-08" },
-        { "num": "04", "stage": "4단계", "name": "종료",         "date": "~ 7<span class=\"sep\">.</span>10",                                                                                                "startDate": "2026-07-09", "endDate": "2026-07-10" }
+        { "num": "01", "stage": "1단계", "name": "셀프평가",       "date": "6<span class=\"sep\">.</span>29<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>02", "startDate": "2026-06-29", "endDate": "2026-07-02" },
+        { "num": "02", "stage": "2단계", "name": "성과평가",       "date": "7<span class=\"sep\">.</span>03<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>08", "startDate": "2026-07-03", "endDate": "2026-07-08" },
+        { "num": "03", "stage": "3단계", "name": "평가 피드백",    "date": "7<span class=\"sep\">.</span>08<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>10", "startDate": "2026-07-08", "endDate": "2026-07-10" },
+        { "num": "04", "stage": "4단계", "name": "상반기 종료",    "date": "7<span class=\"sep\">.</span>10",                                                                                                  "startDate": "2026-07-10", "endDate": "2026-07-10" },
+        { "num": "05", "stage": "5단계", "name": "하반기 목표합의","date": "7<span class=\"sep\">.</span>13<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>24", "startDate": "2026-07-13", "endDate": "2026-07-24" }
       ],
       "topbar": { "leftB": "일정 안내", "right": "2026 · 상반기", "rightBlue": true },
-      "botbar": { "leftA": "일정 안내", "leftB": "4주 · 4단계", "leftBBlue": true, "right": "인사팀 · People" }
+      "botbar": { "leftA": "일정 안내", "leftB": "5단계", "leftBBlue": true, "right": "인사팀 · People" }
     }
   ]
 }
