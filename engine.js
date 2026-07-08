@@ -130,6 +130,7 @@ function renderSummer(s, num, tot) {
     case 'culture-item':  inner = renderWay(s); break;
     case 'cover':         inner = renderCover(s); break;
     case 'sched':         inner = renderSched(s); break;
+    case 'groundrule':    inner = renderGroundRule(s); break;
     default:              inner = '';
   }
   return '<div class="theme-summer"><div class="layer">' + topbar + inner + botbar + '</div></div>';
@@ -281,6 +282,42 @@ function renderCover(s) {
       '<h1 class="s-el cv-title">' + hl(nl(templ(s.title || ''))) + '</h1>' +
     '</div>' +
     '<aside class="cv-side">' + items + '</aside>' +
+  '</div>';
+}
+
+/* ---------- groundrule · 그라운드룰 ---------- */
+function renderGroundRule(s) {
+  var good = (s.good || []).map(function(t) {
+    return '<div class="gr-item">' + t + '</div>';
+  }).join('');
+  var bad = (s.bad || []).map(function(t) {
+    return '<div class="gr-item">' + t + '</div>';
+  }).join('');
+  var ask = (s.ask || []).map(function(t) {
+    return '<div class="gr-item">' + t + '</div>';
+  }).join('');
+
+  return '<div class="layout-groundrule">' +
+    '<div class="gr-left">' +
+      '<div class="s-el gr-category">' + (s.category || '그라운드룰') + '</div>' +
+      '<h1 class="s-el gr-title">' + hl(s.title || '') + '</h1>' +
+      (s.subtitle ? '<div class="s-el gr-subtitle">' + s.subtitle + '</div>' : '') +
+      (s.why ? '<div class="s-el gr-why">' + nl(s.why) + '</div>' : '') +
+    '</div>' +
+    '<div class="gr-right">' +
+      '<div class="s-el gr-section good">' +
+        '<div class="gr-section-head"><span class="icon">✓</span>좋은 행동</div>' +
+        '<div class="gr-items">' + good + '</div>' +
+      '</div>' +
+      '<div class="s-el gr-section bad">' +
+        '<div class="gr-section-head"><span class="icon">✗</span>피해야 할 행동</div>' +
+        '<div class="gr-items">' + bad + '</div>' +
+      '</div>' +
+      '<div class="s-el gr-section ask">' +
+        '<div class="gr-section-head"><span class="icon">?</span>스스로 묻는 질문</div>' +
+        '<div class="gr-items">' + ask + '</div>' +
+      '</div>' +
+    '</div>' +
   '</div>';
 }
 
