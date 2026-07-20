@@ -86,12 +86,29 @@ function autoMarkCurrent(milestones) {
    RENDERERS (슬라이드 타입별 HTML 생성)
 ============================================================ */
 function renderSlide(s, idx, total) {
+  if (s.type === 'embed') return renderEmbed(s);
+
   var theme = s.theme || 'summer';
   var num = String(idx + 1).padStart(2, '0');
   var tot = String(total).padStart(2, '0');
 
   if (theme === 'dark-green') return renderGreen(s, num);
   return renderSummer(s, num, tot);
+}
+
+/* ---------- embed · 독립 제작된 단일 슬라이드 HTML을 그대로 삽입 ---------- */
+function renderEmbed(s) {
+  return '<iframe class="embed-frame" data-src="' + (s.src || '') + '" title="' + (s.title || '') + '" loading="lazy"></iframe>';
+}
+
+/* 슬라이드가 화면에 나타날 때마다 embed iframe을 새로 로드해 진입 애니메이션을 재생 */
+function activateEmbeds(slideEl) {
+  var frames = slideEl.querySelectorAll('iframe.embed-frame');
+  frames.forEach(function(f) {
+    var base = f.dataset.src;
+    if (!base) return;
+    f.src = base + (base.indexOf('?') === -1 ? '?' : '&') + 't=' + Date.now();
+  });
 }
 
 function renderGreen(s, num) {
@@ -429,6 +446,7 @@ function goTo(idx, animate) {
   slides[current].classList.add('active');
   if (DOTS[current]) DOTS[current].classList.add('active');
   runStagger(slides[current]);
+  activateEmbeds(slides[current]);
   var counter = document.getElementById('slide-counter');
   if (counter) counter.textContent = String(current + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
   if (animate) { resetProgress(); if (playing) restartSlideTimer(); }

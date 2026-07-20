@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 하반기 성과평가 안내</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* 그린 톤 팔레트 (변수명은 역할 기준 유지) */
+    --blue:#217A3C;        /* 메인 딥그린 */
+    --cyan:#4FB06D;        /* 라이트 그린 액센트 */
+    --cyan-soft:#E9F6EC;   /* 그린 배경 */
+    --navy:#173F26;        /* 다크 그린 잉크 */
+    --ink:#232A31;
+    --ink-sub:#66707A;
+    --line:#E5EEE7;
+    --cream:#FDFFFD;
+    --amber:#F5B71E;
+    --amber-soft:#FFF4E0;
+    --green:#0E7A5F;       /* 팀장(리더) 틸그린 */
+    --green-soft:#E2F1ED;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:100%;height:100%;overflow:hidden;background:#EEF1F4;}
+  body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;color:var(--ink);}
+
+  /* ===== 16:9 스테이지 ===== */
+  #stage-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+  #stage{position:relative;flex:0 0 auto;width:1920px;height:1080px;transform-origin:center center;
+    background:var(--cream);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18);}
+
+  .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s ease;}
+  .slide.active{opacity:1;visibility:visible;}
+
+  /* 등장 애니메이션 */
+  .rise{opacity:0;transform:translateY(36px);}
+  .active .rise{animation:riseIn .8s cubic-bezier(.2,.8,.25,1) forwards;}
+  .active .d1{animation-delay:.15s;} .active .d2{animation-delay:.4s;}
+  .active .d3{animation-delay:.65s;} .active .d4{animation-delay:.9s;}
+  .active .d5{animation-delay:1.15s;} .active .d6{animation-delay:1.4s;}
+  @keyframes riseIn{to{opacity:1;transform:translateY(0);}}
+
+  /* 공통 헤더 */
+  .head{display:flex;align-items:center;gap:24px;}
+  .head .kicker{display:inline-flex;align-items:center;gap:12px;background:var(--cyan-soft);
+    color:var(--blue);border-radius:999px;padding:12px 28px;font-size:26px;font-weight:800;}
+  .head .kicker .dot{width:12px;height:12px;border-radius:50%;background:var(--cyan);
+    animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(79,176,109,.45);}
+    60%{box-shadow:0 0 0 11px rgba(79,176,109,0);}
+  }
+  .head .who{margin-left:auto;font-size:24px;font-weight:600;color:var(--ink-sub);
+    background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:11px 26px;}
+  h1.big{font-size:76px;font-weight:900;letter-spacing:-.02em;margin-top:30px;line-height:1.2;}
+  h1.big em{font-style:normal;color:var(--blue);}
+  h1.big .hl{position:relative;display:inline-block;}
+  h1.big .hl::after{content:'';position:absolute;left:0;right:0;bottom:6px;height:20px;
+    background:rgba(79,176,109,.25);z-index:-1;border-radius:6px;}
+
+  /* ============================================================
+     SLIDE 1 — 하반기 성과평가 일정
+  ============================================================ */
+  #s1{background:
+      radial-gradient(1000px 700px at 85% 8%, #ECF8EF 0%, rgba(236,248,239,0) 60%),
+      linear-gradient(160deg,#FFFFFF 0%,#F6FBF7 100%);}
+  #s1 .layout{position:absolute;inset:0;padding:80px 130px 130px;display:flex;flex-direction:column;}
+
+  /* 1번 강조 카드 */
+  .hero-item{margin-top:48px;position:relative;background:#FFFFFF;border-radius:32px;
+    border:2.5px solid var(--cyan);padding:46px 54px 50px;
+    box-shadow:0 24px 60px rgba(79,176,109,.18);}
+  .hero-item .now-badge{position:absolute;top:-24px;left:44px;display:inline-flex;align-items:center;gap:10px;
+    background:var(--blue);color:#fff;border-radius:999px;padding:10px 26px;
+    font-size:24px;font-weight:800;box-shadow:0 10px 24px rgba(33,122,60,.35);}
+  .hero-item .now-badge .bl{width:10px;height:10px;border-radius:50%;background:#A9F0BE;
+    animation:blink 1.2s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+  .hero-row{display:flex;align-items:center;gap:30px;margin-top:8px;}
+  .month-chip{flex:0 0 auto;width:150px;height:150px;border-radius:36px;
+    background:linear-gradient(150deg,var(--cyan) 0%,var(--blue) 100%);color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:0 14px 34px rgba(33,122,60,.30);}
+  .month-chip .m{font-size:56px;font-weight:900;line-height:1;}
+  .month-chip .y{font-size:20px;font-weight:700;opacity:.85;margin-top:8px;}
+  .hero-body{flex:1;}
+  .hero-body .ht{font-size:50px;font-weight:900;letter-spacing:-.01em;}
+  .hero-body .ht em{font-style:normal;color:var(--blue);}
+  .hero-flow{margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .flow-box{display:inline-flex;align-items:center;gap:14px;background:var(--cyan-soft);
+    border:1.5px solid rgba(79,176,109,.4);border-radius:16px;padding:16px 26px;
+    font-size:29px;font-weight:700;color:var(--navy);}
+  .flow-box b{color:var(--blue);font-weight:900;}
+  .flow-box .stp{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:var(--blue);
+    color:#fff;font-size:22px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;}
+  .flow-arrow{font-size:36px;font-weight:900;color:var(--cyan);
+    animation:nudge 1.4s ease-in-out infinite;}
+  @keyframes nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(9px);}}
+  .hero-note{margin-top:24px;display:inline-flex;align-items:center;gap:14px;
+    background:var(--amber-soft);border:1.5px solid rgba(245,183,30,.5);border-radius:14px;
+    padding:14px 24px;font-size:26px;font-weight:700;color:#8A6200;}
+
+  /* 2·3번 개요 리스트 */
+  .rest-list{margin-top:44px;display:flex;flex-direction:column;gap:18px;}
+  .rest-item{display:flex;align-items:center;gap:26px;background:#FFFFFF;
+    border:1.5px solid var(--line);border-radius:20px;padding:24px 36px;}
+  .rest-item .rn{flex:0 0 auto;width:52px;height:52px;border-radius:16px;background:#F0F4F7;
+    color:var(--ink-sub);font-size:26px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .rest-item .rm{flex:0 0 auto;font-size:27px;font-weight:900;color:var(--blue);width:96px;}
+  .rest-item .rt{font-size:29px;font-weight:700;color:var(--ink);}
+  .rest-item .rd{margin-left:auto;font-size:24px;font-weight:600;color:var(--ink-sub);}
+  .rest-item .rd b{color:var(--navy);}
+
+  /* ============================================================
+     SLIDE 2 — 2026 평가 구조
+  ============================================================ */
+  #s2{background:
+      radial-gradient(900px 700px at 12% 90%, #ECF8EF 0%, rgba(236,248,239,0) 55%),
+      linear-gradient(200deg,#FFFFFF 0%,#F6FBF7 100%);}
+  #s2 .layout{position:absolute;inset:0;padding:80px 130px 130px;display:flex;flex-direction:column;}
+  #s2 h1.big{font-size:64px;}
+
+  .role-cards{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:44px;flex:1;min-height:0;}
+  .role-card{background:#FFFFFF;border-radius:32px;border:1.5px solid var(--line);
+    padding:44px 50px;box-shadow:0 18px 46px rgba(35,42,49,.07);display:flex;flex-direction:column;}
+  .role-card .role-head{display:flex;align-items:center;gap:20px;}
+  .role-card .role-ic{width:84px;height:84px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:42px;}
+  .role-card.member .role-ic{background:var(--cyan-soft);}
+  .role-card.leader .role-ic{background:var(--green-soft);}
+  .role-card .role-name{font-size:44px;font-weight:900;}
+  .role-card .role-sum{margin-left:auto;font-size:24px;font-weight:700;color:var(--ink-sub);}
+
+  .ratio-bar{margin-top:38px;display:flex;height:96px;border-radius:20px;overflow:hidden;
+    box-shadow:inset 0 0 0 1.5px var(--line);}
+  .ratio-seg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    color:#fff;min-width:0;width:0;}
+  .active .ratio-seg{animation:grow 1.2s cubic-bezier(.25,.9,.3,1) forwards;}
+  .active .g1{animation-delay:.7s;} .active .g2{animation-delay:1.0s;}
+  @keyframes grow{to{width:var(--w);}}
+  .ratio-seg .pct{font-size:38px;font-weight:900;line-height:1;white-space:nowrap;}
+  .ratio-seg .lbl{font-size:21px;font-weight:700;opacity:.92;white-space:nowrap;}
+  .seg-perf{background:linear-gradient(150deg,var(--cyan) 0%,var(--blue) 100%);}
+  .seg-comp{background:var(--navy);}
+  .seg-lead{background:var(--green);}
+
+  .split-row{margin-top:30px;display:flex;gap:16px;}
+  .split-chip{flex:1;display:flex;align-items:center;justify-content:center;gap:14px;
+    background:var(--cyan-soft);border-radius:14px;padding:18px 10px;
+    font-size:25px;font-weight:700;color:var(--navy);}
+  .split-chip b{font-size:30px;font-weight:900;color:var(--blue);}
+  .other-chip{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;
+    border-radius:14px;padding:18px 10px;font-size:25px;font-weight:700;}
+  .role-card.member .other-chip{background:#EDF0F5;color:var(--navy);}
+  .role-card.leader .other-chip{background:var(--green-soft);color:#25612F;}
+  .other-chip b{font-size:30px;font-weight:900;}
+
+  .foot-note{margin-top:40px;display:flex;align-items:center;gap:16px;justify-content:center;
+    font-size:26px;font-weight:600;color:var(--ink-sub);}
+
+  /* ===== 내비게이션 / 진행바 ===== */
+  #progress{position:absolute;left:0;top:0;height:10px;width:0%;z-index:50;
+    background:linear-gradient(90deg,var(--cyan),var(--blue));border-radius:0 6px 6px 0;}
+  #nav{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:50;
+    display:flex;align-items:center;gap:18px;background:rgba(255,255,255,.88);
+    backdrop-filter:blur(6px);border:1.5px solid var(--line);border-radius:999px;padding:12px 26px;
+    box-shadow:0 10px 30px rgba(35,42,49,.10);}
+  .dot{width:14px;height:14px;border-radius:50%;background:#D8E0E6;cursor:pointer;transition:all .3s;}
+  .dot.on{width:38px;border-radius:999px;background:var(--cyan);}
+  #nav .pg{font-size:20px;font-weight:800;color:var(--ink-sub);min-width:52px;text-align:center;}
+  #pausebtn{border:none;background:none;font-size:22px;cursor:pointer;color:var(--blue);font-weight:900;}
+  .hint{position:absolute;bottom:40px;right:44px;z-index:50;font-size:17px;color:#ADB8C2;font-weight:500;}
+</style>
+</head>
+<body>
+<div id="stage-wrap">
+  <div id="stage">
+
+    <!-- ═══════════ SLIDE 1 : 하반기 성과평가 일정 ═══════════ -->
+    <section class="slide" id="s1">
+      <div class="layout">
+        <div class="head rise d1">
+          <span class="kicker"><span class="dot"></span>2026 하반기 · 성과평가</span>
+          <span class="who">인사팀 · People</span>
+        </div>
+        <h1 class="big rise d1"><span class="hl">하반기 성과평가 일정</span>을 안내드립니다</h1>
+
+        <!-- 1번 항목 강조 -->
+        <div class="hero-item rise d2">
+          <span class="now-badge"><span class="bl"></span>STEP 1 · 지금 진행</span>
+          <div class="hero-row">
+            <div class="month-chip"><span class="m">7월</span><span class="y">2026</span></div>
+            <div class="hero-body">
+              <div class="ht">하반기 <em>성과목표 합의</em></div>
+              <div class="hero-flow">
+                <span class="flow-box"><span class="stp">1</span>하반기 성과목표를 <b>합의</b>하고</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-box"><span class="stp">2</span><b>합의된 목표</b>를 '플렉스'에서 생성</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2·3번 개요 리스트 -->
+        <div class="rest-list">
+          <div class="rest-item rise d3">
+            <span class="rn">2</span>
+            <span class="rm">9월</span>
+            <span class="rt">하반기 성과목표 중간 점검</span>
+          </div>
+          <div class="rest-item rise d4">
+            <span class="rn">3</span>
+            <span class="rm">12월</span>
+            <span class="rt">하반기 성과평가 &amp; 역량평가 진행</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ SLIDE 2 : 2026 평가 구조 ═══════════ -->
+    <section class="slide" id="s2">
+      <div class="layout">
+        <div class="head rise d1">
+          <span class="kicker"><span class="dot"></span>2026 · 평가 구조</span>
+          <span class="who">인사팀 · People</span>
+        </div>
+        <h1 class="big rise d1">중고나라 2026년 평가는<br><em>성과평가</em>와 <em>역량평가</em>로 진행됩니다</h1>
+
+        <div class="role-cards">
+          <!-- 팀원 -->
+          <div class="role-card member rise d2">
+            <div class="role-head">
+              <span class="role-ic">🙋</span>
+              <span class="role-name">팀원</span>
+              <span class="role-sum">성과 60% + 역량 40%</span>
+            </div>
+            <div class="ratio-bar">
+              <div class="ratio-seg seg-perf g1" style="--w:60%;">
+                <span class="pct">60%</span><span class="lbl">성과평가</span>
+              </div>
+              <div class="ratio-seg seg-comp g2" style="--w:40%;">
+                <span class="pct">40%</span><span class="lbl">역량평가</span>
+              </div>
+            </div>
+            <div class="split-row">
+              <span class="split-chip">상반기 <b>30%</b></span>
+              <span class="split-chip">하반기 <b>30%</b></span>
+            </div>
+            <div class="other-chip">역량평가 <b>40%</b></div>
+          </div>
+
+          <!-- 팀장 -->
+          <div class="role-card leader rise d3">
+            <div class="role-head">
+              <span class="role-ic">🧭</span>
+              <span class="role-name">팀장</span>
+              <span class="role-sum">성과 70% + 리더 30%</span>
+            </div>
+            <div class="ratio-bar">
+              <div class="ratio-seg seg-perf g1" style="--w:70%;">
+                <span class="pct">70%</span><span class="lbl">성과평가</span>
+              </div>
+              <div class="ratio-seg seg-lead g2" style="--w:30%;">
+                <span class="pct">30%</span><span class="lbl">리더평가</span>
+              </div>
+            </div>
+            <div class="split-row">
+              <span class="split-chip">상반기 <b>35%</b></span>
+              <span class="split-chip">하반기 <b>35%</b></span>
+            </div>
+            <div class="other-chip">리더평가 <b>30%</b></div>
+          </div>
+        </div>
+
+        <div class="foot-note rise d4">성과는 반기별로 나누어 평가하고, 역량·리더평가와 합산합니다.</div>
+      </div>
+    </section>
+
+    <!-- 진행바 / 내비 -->
+    <div id="progress"></div>
+    <div id="nav">
+      <button id="pausebtn" title="일시정지/재생">❚❚</button>
+      <span class="dot on" data-i="0"></span>
+      <span class="dot" data-i="1"></span>
+      <span class="pg">1 / 2</span>
+    </div>
+    <div class="hint">← → 이동 · Space 일시정지</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DURATION = 30000;              // 슬라이드당 30초
+  var slides = document.querySelectorAll('.slide');
+  var dots = document.querySelectorAll('.dot');
+  var pg = document.querySelector('#nav .pg');
+  var bar = document.getElementById('progress');
+  var pauseBtn = document.getElementById('pausebtn');
+  var cur = 0, elapsed = 0, paused = false, last = null;
+
+  function fit(){
+    var s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    document.getElementById('stage').style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+
+  function go(n){
+    cur = (n + slides.length) % slides.length;
+    slides.forEach(function(s,i){
+      if(i===cur){
+        s.classList.remove('active');
+        void s.offsetWidth;
+        s.classList.add('active');
+      }else{
+        s.classList.remove('active');
+      }
+    });
+    dots.forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+    pg.textContent = (cur+1) + ' / ' + slides.length;
+    elapsed = 0;
+  }
+
+  function tick(t){
+    if(last===null) last = t;
+    var dt = t - last; last = t;
+    if(!paused){
+      elapsed += dt;
+      if(elapsed >= DURATION){ go(cur+1); }
+    }
+    bar.style.width = Math.min(elapsed/DURATION*100,100) + '%';
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  function togglePause(){
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶' : '❚❚';
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'){ go(cur+1); }
+    else if(e.key==='ArrowLeft'){ go(cur-1); }
+    else if(e.key===' '){ e.preventDefault(); togglePause(); }
+  });
+  dots.forEach(function(d){
+    d.addEventListener('click', function(e){ e.stopPropagation(); go(+d.dataset.i); });
+  });
+  pauseBtn.addEventListener('click', function(e){ e.stopPropagation(); togglePause(); });
+  document.getElementById('stage').addEventListener('click', function(){ go(cur+1); });
+
+  go(0);
+})();
+</script>
+</body>
+</html>

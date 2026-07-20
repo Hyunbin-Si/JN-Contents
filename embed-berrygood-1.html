@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>베리굿 소개</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --berry:#E8474B;
+    --berry-deep:#C93438;
+    --berry-soft:#FFE9EA;
+    --berry-softer:#FFF6F6;
+    --leaf:#5FAE3C;
+    --leaf-soft:#EAF6E3;
+    --ink:#2B2B33;
+    --ink-sub:#6B6B76;
+    --cream:#FFFDFB;
+    --gold:#F5B71E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:100%;height:100%;overflow:hidden;background:#F3EFEC;}
+  body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;color:var(--ink);}
+
+  #stage-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+  #stage{position:relative;flex:0 0 auto;width:1920px;height:1080px;transform-origin:center center;background:var(--cream);overflow:hidden;}
+
+  .slide{position:absolute;inset:0;}
+  .dotgrid{position:absolute;width:220px;height:160px;opacity:.5;
+    background-image:radial-gradient(var(--berry-soft) 6px, transparent 6px);
+    background-size:36px 36px;}
+
+  #s1{background:
+      radial-gradient(1100px 800px at 22% 42%, #FFFFFF 0%, #FFFFFF 46%, rgba(255,255,255,0) 70%),
+      linear-gradient(135deg, #FFF9F7 0%, #FFF1F0 55%, #FFEAE4 100%);}
+  #s1 .layout{position:absolute;inset:0;display:flex;align-items:center;padding:0 110px;gap:70px;}
+
+  .hero{position:relative;flex:0 0 640px;height:760px;display:flex;align-items:center;justify-content:center;}
+  .hero-ring{position:absolute;width:600px;height:600px;border-radius:50%;
+    background:#FFFFFF;
+    box-shadow:0 24px 70px rgba(232,71,75,.16), 0 0 0 14px rgba(255,255,255,.7), 0 0 0 15px rgba(232,71,75,.10);}
+  .hero img{position:relative;width:520px;height:520px;border-radius:50%;
+    animation:berryBounce 2.6s ease-in-out infinite;}
+  @keyframes berryBounce{
+    0%,100%{transform:translateY(0) rotate(-2deg) scale(1);}
+    30%{transform:translateY(-24px) rotate(2deg) scale(1.02);}
+    55%{transform:translateY(0) rotate(-1deg) scale(.995);}
+    70%{transform:translateY(-8px) rotate(1.5deg) scale(1.005);}
+  }
+
+  .intro-copy{flex:1;position:relative;}
+  .app-badge{display:inline-flex;align-items:center;gap:12px;background:#FFFFFF;
+    border:2px solid var(--berry-soft);border-radius:999px;padding:12px 26px;
+    font-size:24px;font-weight:700;color:var(--berry);
+    box-shadow:0 8px 24px rgba(232,71,75,.12);}
+  .app-badge .pulse-dot{width:14px;height:14px;border-radius:50%;background:var(--berry);
+    animation:pulse 1.6s ease-in-out infinite;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(232,71,75,.45);}
+    60%{box-shadow:0 0 0 12px rgba(232,71,75,0);}
+  }
+  .intro-title{margin-top:34px;font-size:132px;font-weight:900;line-height:1.06;letter-spacing:-.02em;}
+  .intro-title .berry-text{color:var(--berry);position:relative;display:inline-block;}
+  .intro-title .berry-text::after{content:'';position:absolute;left:2px;right:2px;bottom:8px;height:26px;
+    background:rgba(245,183,30,.35);z-index:-1;border-radius:8px;}
+  .birth-chip{display:inline-flex;align-items:center;gap:14px;margin-top:28px;
+    background:var(--leaf-soft);color:#3E7A22;border-radius:18px;padding:14px 28px;
+    font-size:30px;font-weight:800;}
+  .birth-chip .cake{font-size:36px;display:inline-block;animation:cakeWiggle 2.2s ease-in-out infinite;}
+  @keyframes cakeWiggle{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(8deg);}}
+  .intro-sub{margin-top:36px;font-size:40px;font-weight:800;line-height:1.45;color:var(--ink);}
+  .intro-sub em{font-style:normal;color:var(--berry);}
+  .msg-lines{margin-top:38px;display:flex;flex-direction:column;gap:20px;}
+  .msg-line{display:flex;align-items:center;gap:18px;background:#FFFFFF;border-radius:20px;
+    padding:22px 30px;font-size:31px;font-weight:600;color:var(--ink);line-height:1.55;
+    box-shadow:0 10px 28px rgba(43,43,51,.07);border:1.5px solid #FBEDEC;}
+  .msg-line .ic{font-size:36px;flex:0 0 auto;}
+  .msg-line b{color:var(--berry);font-weight:800;}
+  .cta-line{margin-top:40px;display:inline-flex;align-items:center;gap:16px;
+    background:linear-gradient(120deg, var(--berry) 0%, #F26A6E 100%);
+    color:#fff;border-radius:999px;padding:22px 44px;font-size:34px;font-weight:800;
+    box-shadow:0 16px 40px rgba(232,71,75,.35);
+    animation:ctaBob 2.4s ease-in-out infinite;}
+  @keyframes ctaBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+  .rise{opacity:0;transform:translateY(36px);animation:riseIn .8s cubic-bezier(.2,.8,.25,1) forwards;}
+  .d1{animation-delay:.15s;} .d2{animation-delay:.35s;}
+  .d3{animation-delay:.55s;} .d4{animation-delay:.75s;}
+  .d5{animation-delay:.95s;} .d6{animation-delay:1.15s;}
+  .d7{animation-delay:1.4s;}
+  @keyframes riseIn{to{opacity:1;transform:translateY(0);}}
+  .pop{opacity:0;transform:scale(.6);animation:popIn 1s cubic-bezier(.18,1.2,.3,1) forwards;}
+  @keyframes popIn{to{opacity:1;transform:scale(1);}}
+
+  .confetti{position:absolute;top:-30px;border-radius:4px;opacity:0;pointer-events:none;animation:confFall linear infinite;}
+  @keyframes confFall{
+    0%{opacity:0;transform:translateY(0) rotate(0deg);}
+    8%{opacity:1;}
+    100%{opacity:0;transform:translateY(1160px) rotate(720deg);}
+  }
+</style>
+</head>
+<body>
+<div id="stage-wrap">
+  <div id="stage">
+    <section class="slide" id="s1">
+      <div class="dotgrid" style="top:70px;right:130px;"></div>
+      <div class="dotgrid" style="bottom:90px;left:60px;width:160px;"></div>
+      <div id="confetti-box"></div>
+
+      <div class="layout">
+        <div class="hero pop">
+          <div class="hero-ring"></div>
+          <img src="berrygood.png" alt="베리굿 캐릭터">
+        </div>
+
+        <div class="intro-copy">
+          <div class="app-badge rise d1"><span class="pulse-dot"></span>NEW · 슬랙 앱 출시 <span style="font-size:20px;color:var(--ink-sub);font-weight:600;">Slack App</span></div>
+          <h1 class="intro-title rise d2">🍓 <span class="berry-text">베리굿</span></h1>
+          <div class="birth-chip rise d3"><span class="cake">🎂</span> 생일 · 7월 10일</div>
+          <p class="intro-sub rise d4">서로를 인정하고, 감사와 응원하는<br><em>'베리굿'</em> 서비스</p>
+          <div class="msg-lines">
+            <div class="msg-line rise d5"><span class="ic">🍓</span><span>'베리굿'으로 동료에게 쉽게 <b>칭찬과 감사</b>를 보내요.</span></div>
+            <div class="msg-line rise d6"><span class="ic">🍓</span><span>축하와 응원의 마음은 '베리굿'으로 <b>쉽게 표현</b>해요.</span></div>
+          </div>
+          <div class="cta-line rise d7">오늘도, 곁에 있는 동료에게 🍓 베리굿! 보내보세요!</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    document.getElementById('stage').style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+
+  var confBox = document.getElementById('confetti-box');
+  var colors = ['#E8474B','#F5B71E','#5FAE3C','#F26A6E','#7CC4F5','#FFD3D4'];
+  for(var i=0;i<46;i++){
+    var c = document.createElement('span');
+    c.className = 'confetti';
+    var size = 8 + ((i*7)%12);
+    c.style.left = ((i*47)%100) + '%';
+    c.style.width = size+'px';
+    c.style.height = (size*1.6)+'px';
+    c.style.background = colors[i % colors.length];
+    c.style.animationDuration = (3.4 + (i%5)*0.8) + 's';
+    c.style.animationDelay = ((i%9)*0.35) + 's';
+    if(i%3===0) c.style.borderRadius = '50%';
+    confBox.appendChild(c);
+  }
+})();
+</script>
+</body>
+</html>

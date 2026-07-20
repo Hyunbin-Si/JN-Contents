@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>하반기 성과평가 일정</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#217A3C; --cyan:#4FB06D; --cyan-soft:#E9F6EC; --navy:#173F26;
+    --ink:#232A31; --ink-sub:#66707A; --line:#E5EEE7; --cream:#FDFFFD;
+    --amber:#F5B71E; --amber-soft:#FFF4E0; --green:#0E7A5F; --green-soft:#E2F1ED;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:100%;height:100%;overflow:hidden;background:#EEF1F4;}
+  body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;color:var(--ink);}
+
+  #stage-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+  #stage{position:relative;flex:0 0 auto;width:1920px;height:1080px;transform-origin:center center;
+    background:var(--cream);overflow:hidden;}
+  .slide{position:absolute;inset:0;}
+
+  .rise{opacity:0;transform:translateY(36px);animation:riseIn .8s cubic-bezier(.2,.8,.25,1) forwards;}
+  .d1{animation-delay:.15s;} .d2{animation-delay:.4s;}
+  .d3{animation-delay:.65s;} .d4{animation-delay:.9s;}
+  @keyframes riseIn{to{opacity:1;transform:translateY(0);}}
+
+  .head{display:flex;align-items:center;gap:24px;}
+  .head .kicker{display:inline-flex;align-items:center;gap:12px;background:var(--cyan-soft);
+    color:var(--blue);border-radius:999px;padding:12px 28px;font-size:26px;font-weight:800;}
+  .head .kicker .dot{width:12px;height:12px;border-radius:50%;background:var(--cyan);
+    animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(79,176,109,.45);}
+    60%{box-shadow:0 0 0 11px rgba(79,176,109,0);}
+  }
+  .head .who{margin-left:auto;font-size:24px;font-weight:600;color:var(--ink-sub);
+    background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:11px 26px;}
+  h1.big{font-size:76px;font-weight:900;letter-spacing:-.02em;margin-top:30px;line-height:1.2;}
+  h1.big em{font-style:normal;color:var(--blue);}
+  h1.big .hl{position:relative;display:inline-block;}
+  h1.big .hl::after{content:'';position:absolute;left:0;right:0;bottom:6px;height:20px;
+    background:rgba(79,176,109,.25);z-index:-1;border-radius:6px;}
+
+  #s1{background:
+      radial-gradient(1000px 700px at 85% 8%, #ECF8EF 0%, rgba(236,248,239,0) 60%),
+      linear-gradient(160deg,#FFFFFF 0%,#F6FBF7 100%);}
+  #s1 .layout{position:absolute;inset:0;padding:80px 130px 130px;display:flex;flex-direction:column;}
+
+  .hero-item{margin-top:48px;position:relative;background:#FFFFFF;border-radius:32px;
+    border:2.5px solid var(--cyan);padding:46px 54px 50px;
+    box-shadow:0 24px 60px rgba(79,176,109,.18);}
+  .hero-item .now-badge{position:absolute;top:-24px;left:44px;display:inline-flex;align-items:center;gap:10px;
+    background:var(--blue);color:#fff;border-radius:999px;padding:10px 26px;
+    font-size:24px;font-weight:800;box-shadow:0 10px 24px rgba(33,122,60,.35);}
+  .hero-item .now-badge .bl{width:10px;height:10px;border-radius:50%;background:#A9F0BE;
+    animation:blink 1.2s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+  .hero-row{display:flex;align-items:center;gap:30px;margin-top:8px;}
+  .month-chip{flex:0 0 auto;width:150px;height:150px;border-radius:36px;
+    background:linear-gradient(150deg,var(--cyan) 0%,var(--blue) 100%);color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:0 14px 34px rgba(33,122,60,.30);}
+  .month-chip .m{font-size:56px;font-weight:900;line-height:1;}
+  .month-chip .y{font-size:20px;font-weight:700;opacity:.85;margin-top:8px;}
+  .hero-body{flex:1;}
+  .hero-body .ht{font-size:50px;font-weight:900;letter-spacing:-.01em;}
+  .hero-body .ht em{font-style:normal;color:var(--blue);}
+  .hero-flow{margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .flow-box{display:inline-flex;align-items:center;gap:14px;background:var(--cyan-soft);
+    border:1.5px solid rgba(79,176,109,.4);border-radius:16px;padding:16px 26px;
+    font-size:29px;font-weight:700;color:var(--navy);}
+  .flow-box b{color:var(--blue);font-weight:900;}
+  .flow-box .stp{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:var(--blue);
+    color:#fff;font-size:22px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;}
+  .flow-arrow{font-size:36px;font-weight:900;color:var(--cyan);
+    animation:nudge 1.4s ease-in-out infinite;}
+  @keyframes nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(9px);}}
+
+  .rest-list{margin-top:44px;display:flex;flex-direction:column;gap:18px;}
+  .rest-item{display:flex;align-items:center;gap:26px;background:#FFFFFF;
+    border:1.5px solid var(--line);border-radius:20px;padding:24px 36px;}
+  .rest-item .rn{flex:0 0 auto;width:52px;height:52px;border-radius:16px;background:#F0F4F7;
+    color:var(--ink-sub);font-size:26px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .rest-item .rm{flex:0 0 auto;font-size:27px;font-weight:900;color:var(--blue);width:96px;}
+  .rest-item .rt{font-size:29px;font-weight:700;color:var(--ink);}
+  .rest-item .rd{margin-left:auto;font-size:24px;font-weight:600;color:var(--ink-sub);}
+  .rest-item .rd b{color:var(--navy);}
+</style>
+</head>
+<body>
+<div id="stage-wrap">
+  <div id="stage">
+    <section class="slide" id="s1">
+      <div class="layout">
+        <div class="head rise d1">
+          <span class="kicker"><span class="dot"></span>2026 하반기 · 성과평가</span>
+          <span class="who">인사팀 · People</span>
+        </div>
+        <h1 class="big rise d1"><span class="hl">하반기 성과평가 일정</span>을 안내드립니다</h1>
+
+        <div class="hero-item rise d2">
+          <span class="now-badge"><span class="bl"></span>STEP 1 · 지금 진행</span>
+          <div class="hero-row">
+            <div class="month-chip"><span class="m">7월</span><span class="y">2026</span></div>
+            <div class="hero-body">
+              <div class="ht">하반기 <em>성과목표 합의</em></div>
+              <div class="hero-flow">
+                <span class="flow-box"><span class="stp">1</span>하반기 성과목표를 <b>합의</b>하고</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-box"><span class="stp">2</span><b>합의된 목표</b>를 '플렉스'에서 생성</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rest-list">
+          <div class="rest-item rise d3">
+            <span class="rn">2</span>
+            <span class="rm">9월</span>
+            <span class="rt">하반기 성과목표 중간 점검</span>
+          </div>
+          <div class="rest-item rise d4">
+            <span class="rn">3</span>
+            <span class="rm">12월</span>
+            <span class="rt">하반기 성과평가 &amp; 역량평가 진행</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    document.getElementById('stage').style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+})();
+</script>
+</body>
+</html>

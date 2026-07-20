@@ -71,6 +71,7 @@ html, body {
   overflow: hidden;
 }
 .slide.active { opacity: 1; pointer-events: all; }
+.embed-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #fff; }
 .s-el {
   opacity: 0; transform: translateY(14px);
   transition:

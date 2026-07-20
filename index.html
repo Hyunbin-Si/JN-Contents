@@ -16,7 +16,7 @@
 
 <div id="ui">
   <div id="progress-wrap"><div id="progress-bar"></div></div>
-  <div id="slide-counter">01 / 20</div>
+  <div id="slide-counter">01 / 22</div>
   <button id="btn-fullscreen" title="전체화면 (F)">⛶</button>
   <div id="controls">
     <button class="ctrl-btn" id="btn-prev" title="이전 (←)">&#8592;</button>
@@ -181,26 +181,10 @@
       "topbar": { "leftB": "조직문화" },
       "botbar": { "leftA": "조직문화", "leftB": "04 / 04", "leftBBlue": true, "right": "업무 효율" } },
 
-    { "id": 19, "theme": "summer", "type": "cover", "duration": 15,
-      "pretitle": "2026 상반기 성과평가",
-      "title": "상반기\n__성과평가__가\n시작됩니다.",
-      "sideItems": [
-        { "label": "평가 기간", "value": "6월 18일<span class=\"arrow\"> → </span>7월 10일" },
-        { "label": "시작까지", "value": "{{dday(2026-06-18)}}", "style": "cyan" }
-      ],
-      "topbar": { "leftB": "성과평가 안내", "right": "2026 · 상반기", "rightBlue": true },
-      "botbar": { "right": "인사팀 · People" } },
-
-    { "id": 20, "theme": "summer", "type": "sched", "duration": 30,
-      "title": "__4단계__로 진행되는\n상반기 성과평가",
-      "milestones": [
-        { "num": "01", "stage": "1단계", "name": "셀프평가",     "date": "6<span class=\"sep\">.</span>18<span class=\"sep\"> — </span>6<span class=\"sep\">.</span>24", "startDate": "2026-06-18", "endDate": "2026-06-24" },
-        { "num": "02", "stage": "2단계", "name": "평가자 평가", "date": "6<span class=\"sep\">.</span>25<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>01", "startDate": "2026-06-25", "endDate": "2026-07-01" },
-        { "num": "03", "stage": "3단계", "name": "1on1 피드백", "date": "7<span class=\"sep\">.</span>02<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>08", "startDate": "2026-07-02", "endDate": "2026-07-08" },
-        { "num": "04", "stage": "4단계", "name": "종료",         "date": "~ 7<span class=\"sep\">.</span>10",                                                                                                "startDate": "2026-07-09", "endDate": "2026-07-10" }
-      ],
-      "topbar": { "leftB": "일정 안내", "right": "2026 · 상반기", "rightBlue": true },
-      "botbar": { "leftA": "일정 안내", "leftB": "4주 · 4단계", "leftBBlue": true, "right": "인사팀 · People" } }
+    { "id": 19, "type": "embed", "duration": 30, "src": "embed-eval-1.html", "title": "하반기 성과평가 일정" },
+    { "id": 20, "type": "embed", "duration": 30, "src": "embed-eval-2.html", "title": "2026 평가 구조" },
+    { "id": 21, "type": "embed", "duration": 30, "src": "embed-berrygood-1.html", "title": "베리굿 소개" },
+    { "id": 22, "type": "embed", "duration": 30, "src": "embed-berrygood-2.html", "title": "베리굿 사용 안내" }
   ]
 }
 </script>

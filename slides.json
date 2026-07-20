@@ -259,63 +259,31 @@
     },
     {
       "id": 19,
-      "theme": "summer",
-      "type": "cover",
-      "duration": 15,
-      "pretitle": "2026 상반기 성과평가",
-      "title": "상반기\n__성과평가__가\n진행됩니다.",
-      "sideItems": [
-        { "label": "평가 기간", "value": "6월 29일<span class=\"arrow\"> → </span>7월 10일" },
-        { "label": "종료까지", "value": "{{dday(2026-07-10)}}", "style": "cyan" }
-      ],
-      "topbar": { "leftB": "성과평가 안내", "right": "2026 · 상반기", "rightBlue": true },
-      "botbar": { "right": "인사팀 · People" }
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-eval-1.html",
+      "title": "하반기 성과평가 일정"
     },
     {
       "id": 20,
-      "theme": "summer",
-      "type": "groundrule",
-      "duration": 25,
-      "category": "그라운드룰",
-      "title": "보고는 결론부터",
-      "subtitle": "의사결정이 늦어지지 않게 한다.",
-      "why": "좋은 보고는 결론 → 근거 → 이슈 → 대안 → 요청사항 순으로 전달해야 합니다.\n결론이 없거나 늦게 전달되면 판단과 실행이 지연됩니다.",
-      "good": [
-        "결론과 요청사항을 먼저 말한다.",
-        "판단에 필요한 근거를 함께 제시한다.",
-        "이슈와 리스크를 숨기지 않고 공유한다.",
-        "문제가 있다면 대안과 다음 행동을 제시한다."
-      ],
-      "bad": [
-        "결론 없이 배경부터 길게 설명한다.",
-        "근거 없이 의견이나 느낌으로 보고한다.",
-        "이슈만 말하고 대안이나 다음 행동을 제시하지 않는다.",
-        "요청사항 없이 상황만 공유한다."
-      ],
-      "ask": [
-        "결론이 먼저 보이는가?",
-        "판단에 필요한 근거가 있는가?",
-        "이슈와 리스크를 공유했는가?",
-        "대안과 다음 행동을 제시했는가?"
-      ],
-      "topbar": { "leftB": "그라운드룰", "right": "2026 · 상반기", "rightBlue": true },
-      "botbar": { "leftA": "그라운드룰", "leftB": "보고", "leftBBlue": true, "right": "인사팀 · People" }
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-eval-2.html",
+      "title": "2026 평가 구조"
     },
     {
       "id": 21,
-      "theme": "summer",
-      "type": "sched",
+      "type": "embed",
       "duration": 30,
-      "title": "__상반기__성과평가 진행중",
-      "milestones": [
-        { "num": "01", "stage": "1단계", "name": "셀프평가",       "date": "6<span class=\"sep\">.</span>29<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>02", "startDate": "2026-06-29", "endDate": "2026-07-02" },
-        { "num": "02", "stage": "2단계", "name": "성과평가",       "date": "7<span class=\"sep\">.</span>03<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>08", "startDate": "2026-07-03", "endDate": "2026-07-08" },
-        { "num": "03", "stage": "3단계", "name": "평가 피드백",    "date": "7<span class=\"sep\">.</span>08<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>10", "startDate": "2026-07-08", "endDate": "2026-07-10" },
-        { "num": "04", "stage": "4단계", "name": "상반기 종료",    "date": "7<span class=\"sep\">.</span>10",                                                                                                  "startDate": "2026-07-10", "endDate": "2026-07-10" },
-        { "num": "05", "stage": "5단계", "name": "하반기 목표합의","date": "7<span class=\"sep\">.</span>13<span class=\"sep\"> — </span>7<span class=\"sep\">.</span>24", "startDate": "2026-07-13", "endDate": "2026-07-24" }
-      ],
-      "topbar": { "leftB": "일정 안내", "right": "2026 · 상반기", "rightBlue": true },
-      "botbar": { "leftA": "일정 안내", "leftB": "5단계", "leftBBlue": true, "right": "인사팀 · People" }
+      "src": "embed-berrygood-1.html",
+      "title": "베리굿 소개"
+    },
+    {
+      "id": 22,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-berrygood-2.html",
+      "title": "베리굿 사용 안내"
     }
   ]
 }
