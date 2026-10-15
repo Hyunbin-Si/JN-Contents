@@ -16,7 +16,7 @@
 
 <div id="ui">
   <div id="progress-wrap"><div id="progress-bar"></div></div>
-  <div id="slide-counter">01 / 22</div>
+  <div id="slide-counter">01 / 19</div>
   <button id="btn-fullscreen" title="전체화면 (F)">⛶</button>
   <div id="controls">
     <button class="ctrl-btn" id="btn-prev" title="이전 (←)">&#8592;</button>
@@ -36,155 +36,141 @@
      ╚════════════════════════════════════════════════════════════╝ -->
 <script id="slides-data-json" type="application/json">
 {
-  "config": { "duration": 20, "accentColor": "#1AAED1" },
+  "config": {
+    "duration": 20,
+    "accentColor": "#0dcc5a"
+  },
   "slides": [
-    { "id": 1, "theme": "dark-green", "type": "mission", "tag": "Mission",
-      "title": "누구나 자기 __자산__으로\n__돈을 만들 수 있게__ 한다.",
-      "translate": "내 서랍을 내 지갑으로." },
-
-    { "id": 2, "theme": "dark-green", "type": "vision", "tag": "Vision",
-      "title": "대한민국 최대\n__신뢰 기반__\n가치 교환 시스템.",
-      "translate": "플랫폼이 아닙니다.\n시스템입니다." },
-
-    { "id": 3, "theme": "dark-green", "type": "context",
-      "title": "__70명__이 같은 기준으로 움직일 때,\n중고나라는 __시장의 기준__이 된다." },
-
-    { "id": 4, "theme": "summer", "type": "intro",
-      "kicker": "일을 대하는 태도", "kickerEn": "VALUES",
-      "num": "03", "title": "핵심가치",
-      "body": "일과 업무의 판단 기준이 모호할 때, 이 세 가지 가치를 기준으로 판단합니다.",
-      "items": [
-        { "num": "01", "tag": "CUSTOMER", "name": "고객가치", "desc": "유저를 위한.\n모든 일은 결국 유저의 가치로 연결됩니다." },
-        { "num": "02", "tag": "INNOVATION", "name": "혁신", "desc": "더 나은 답.\n원래 그런 것은 없습니다." },
-        { "num": "03", "tag": "TRUST", "name": "신뢰", "desc": "있는 그대로.\n정보는 투명하게 공유하고 결정을 신뢰합니다." }
-      ],
-      "topbar": { "leftB": "핵심가치" },
-      "botbar": { "leftA": "핵심가치", "leftB": "3가지 원칙", "leftBBlue": true, "right": "2026 · 상반기" } },
-
-    { "id": 5, "theme": "summer", "type": "value",
-      "tag": "핵심가치 01", "subtag": "고객가치",
-      "title": "__유저__를 위한",
-      "body": "우리의 모든 '일'은\n__유저를 위한 가치__로 연결됩니다.",
-      "indexItems": ["01 · 고객가치", "02 · 혁신", "03 · 신뢰"], "indexCur": 0,
-      "topbar": { "leftB": "핵심가치" },
-      "botbar": { "leftA": "핵심가치", "leftB": "01 · 고객가치", "leftBBlue": true, "right": "유저를 위한" } },
-
-    { "id": 6, "theme": "summer", "type": "value",
-      "tag": "핵심가치 02", "subtag": "혁신",
-      "title": "더 나은 __답__",
-      "body": "원래 그런 것은 없습니다.\n더 나은 답은 __항상 있습니다.__",
-      "indexItems": ["01 · 고객가치", "02 · 혁신", "03 · 신뢰"], "indexCur": 1,
-      "topbar": { "leftB": "핵심가치" },
-      "botbar": { "leftA": "핵심가치", "leftB": "02 · 혁신", "leftBBlue": true, "right": "더 나은 답" } },
-
-    { "id": 7, "theme": "summer", "type": "value",
-      "tag": "핵심가치 03", "subtag": "신뢰",
-      "title": "있는 __그대로__",
-      "body": "정보는 있는 그대로 __투명하게__ 공유합니다.\n결정되면 __결정을 신뢰__합니다.",
-      "indexItems": ["01 · 고객가치", "02 · 혁신", "03 · 신뢰"], "indexCur": 2,
-      "topbar": { "leftB": "핵심가치" },
-      "botbar": { "leftA": "핵심가치", "leftB": "03 · 신뢰", "leftBBlue": true, "right": "있는 그대로" } },
-
-    { "id": 8, "theme": "summer", "type": "section",
-      "kicker": "동료를 대하는 태도 · 문제를 대하는 태도", "kickerEn": "WAY OF WORKING",
-      "num": "05", "title": "일하는방식",
-      "body": "일과 동료를 대하는 다섯 가지 원칙. 우리가 매일 실천하는 방식입니다.",
-      "groups": [
-        { "cap": "GROUP A", "name": "동료를 대하는 태도",
-          "values": [
-            { "num": "01", "name": "진정성", "sub": "__투명하고__, 솔직하게" },
-            { "num": "02", "name": "협업",   "sub": "__함께__, 성장하기" }
-          ] },
-        { "cap": "GROUP B", "name": "문제를 대하는 태도",
-          "values": [
-            { "num": "03", "name": "문제해결", "sub": "__발견하고__, 해결하기" },
-            { "num": "04", "name": "빠른실행", "sub": "__작고__, 빠르게" },
-            { "num": "05", "name": "책임감",   "sub": "__주도적으로__, 마무리까지" }
-          ] }
-      ],
-      "topbar": { "leftB": "일하는방식" },
-      "botbar": { "leftA": "일하는방식", "leftB": "5가지 원칙 · 2 그룹", "leftBBlue": true, "right": "2026 · 상반기" } },
-
-    { "id": 9, "theme": "summer", "type": "way",
-      "numLabel": "01", "categoryLabel": "일하는방식", "category": "동료를 대하는 태도",
-      "title": "진정성", "subBold": "투명하고", "subRest": ", 솔직하게",
-      "body": "우리는 __상호존중__을 기반으로 일하며, 회사를 위해서 숨기지 않고 __솔직하게 말합니다.__",
-      "topbar": { "leftB": "일하는방식" },
-      "botbar": { "leftA": "일하는방식", "leftB": "01 / 05", "leftBBlue": true, "right": "투명하고, 솔직하게" } },
-
-    { "id": 10, "theme": "summer", "type": "way",
-      "numLabel": "02", "categoryLabel": "일하는방식", "category": "동료를 대하는 태도",
-      "title": "협업", "subBold": "함께", "subRest": ", 성장하기",
-      "body": "우리는 혼자가 아닌, __함께 일하며 성장__합니다.",
-      "topbar": { "leftB": "일하는방식" },
-      "botbar": { "leftA": "일하는방식", "leftB": "02 / 05", "leftBBlue": true, "right": "함께, 성장하기" } },
-
-    { "id": 11, "theme": "summer", "type": "way",
-      "numLabel": "03", "categoryLabel": "일하는방식", "category": "문제를 대하는 태도",
-      "title": "문제해결", "subBold": "발견하고", "subRest": ", 해결하기",
-      "body": "문제는 문제를 __'발견하는 순간'__부터 시작합니다.\n우리는 문제를 숨기지 않고, 함께 __해결__합니다.",
-      "topbar": { "leftB": "일하는방식" },
-      "botbar": { "leftA": "일하는방식", "leftB": "03 / 05", "leftBBlue": true, "right": "발견하고, 해결하기" } },
-
-    { "id": 12, "theme": "summer", "type": "way",
-      "numLabel": "04", "categoryLabel": "일하는방식", "category": "문제를 대하는 태도",
-      "title": "빠른실행", "subBold": "작고", "subRest": ", 빠르게",
-      "body": "우리는 __작게 시도__하고, __빠르게 검증__합니다.",
-      "topbar": { "leftB": "일하는방식" },
-      "botbar": { "leftA": "일하는방식", "leftB": "04 / 05", "leftBBlue": true, "right": "작고, 빠르게" } },
-
-    { "id": 13, "theme": "summer", "type": "way",
-      "numLabel": "05", "categoryLabel": "일하는방식", "category": "문제를 대하는 태도",
-      "title": "책임감", "subBold": "주도적으로", "subRest": ", 마무리까지",
-      "body": "우리는 __내가 시작한 일은 책임지고__, 끝까지 마무리합니다.",
-      "topbar": { "leftB": "일하는방식" },
-      "botbar": { "leftA": "일하는방식", "leftB": "05 / 05", "leftBBlue": true, "right": "주도적으로, 마무리까지" } },
-
-    { "id": 14, "theme": "summer", "type": "intro",
-      "kicker": "조직문화 1.0", "kickerEn": "CULTURE · ENVIRONMENT",
-      "num": "04", "title": "환경설정",
-      "body": "우리가 일하기 위한 네 가지 환경. 매일의 약속입니다.",
-      "items": [
-        { "num": "01", "tag": "소통",   "name": "'님' 문화",  "desc": "진정성 있는 소통을 위한." },
-        { "num": "02", "tag": "피드백", "name": "안심톡",     "desc": "투명한 소통을 위한." },
-        { "num": "03", "tag": "관계",   "name": "랜덤런치",   "desc": "우리의 관계 형성을 위한." },
-        { "num": "04", "tag": "효율",   "name": "코어워킹",   "desc": "업무 효율을 높이기 위한." }
-      ],
-      "topbar": { "leftB": "조직문화" },
-      "botbar": { "leftA": "조직문화", "leftB": "4가지 환경", "leftBBlue": true, "right": "2026 · 상반기" } },
-
-    { "id": 15, "theme": "summer", "type": "way",
-      "numLabel": "01", "categoryLabel": "조직문화", "category": "진정성 있는 소통",
-      "title": "'님' 문화", "subBold": "인욱'님'", "subRest": "으로 불러주세요",
-      "body": "상호 존중을 바탕으로, 눈치 보지 않고 명확하게 __사실과 의견을 나눕니다.__",
-      "topbar": { "leftB": "조직문화" },
-      "botbar": { "leftA": "조직문화", "leftB": "01 / 04", "leftBBlue": true, "right": "진정성 있는 소통" } },
-
-    { "id": 16, "theme": "summer", "type": "way",
-      "numLabel": "02", "categoryLabel": "조직문화", "category": "투명한 소통",
-      "title": "안심톡", "subBold": "회사를 위한", "subRest": " 개선 의견을 보내주세요!",
-      "body": "누구나 자유롭게 묻고 제안하는 공간, __명확하고 투명한 피드백__을 약속합니다.",
-      "topbar": { "leftB": "조직문화" },
-      "botbar": { "leftA": "조직문화", "leftB": "02 / 04", "leftBBlue": true, "right": "투명한 소통" } },
-
-    { "id": 17, "theme": "summer", "type": "way",
-      "numLabel": "03", "categoryLabel": "조직문화", "category": "관계 형성",
-      "title": "랜덤런치", "subBold": "평소 대화 못 한", "subRest": " 동료와 함께!",
-      "body": "자유롭게 소통하고, __여러 구성원과 관계__를 맺어보세요.",
-      "topbar": { "leftB": "조직문화" },
-      "botbar": { "leftA": "조직문화", "leftB": "03 / 04", "leftBBlue": true, "right": "관계 형성" } },
-
-    { "id": 18, "theme": "summer", "type": "way",
-      "numLabel": "04", "categoryLabel": "조직문화", "category": "업무 효율",
-      "title": "코어워킹", "subBold": "업무 집중", "subRest": "으로 실행 속도를 높여요!",
-      "body": "코어워킹 시간에는 __No Meeting, No Slack.__\n매주 월요일 10:10 ~ 12:10, 동료의 시간을 존중하고 배려해주세요.",
-      "topbar": { "leftB": "조직문화" },
-      "botbar": { "leftA": "조직문화", "leftB": "04 / 04", "leftBBlue": true, "right": "업무 효율" } },
-
-    { "id": 19, "type": "embed", "duration": 30, "src": "embed-eval-1.html", "title": "하반기 성과평가 일정" },
-    { "id": 20, "type": "embed", "duration": 30, "src": "embed-eval-2.html", "title": "2026 평가 구조" },
-    { "id": 21, "type": "embed", "duration": 30, "src": "embed-berrygood-1.html", "title": "베리굿 소개" },
-    { "id": 22, "type": "embed", "duration": 30, "src": "embed-berrygood-2.html", "title": "베리굿 사용 안내" }
+    {
+      "id": 1,
+      "type": "embed",
+      "src": "embed-mission.html",
+      "title": "미션"
+    },
+    {
+      "id": 2,
+      "type": "embed",
+      "src": "embed-vision.html",
+      "title": "비전"
+    },
+    {
+      "id": 3,
+      "type": "embed",
+      "src": "embed-context.html",
+      "title": "82명이 같은 기준으로"
+    },
+    {
+      "id": 4,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-values.html",
+      "title": "핵심가치"
+    },
+    {
+      "id": 5,
+      "type": "embed",
+      "duration": 25,
+      "src": "embed-way-1.html",
+      "title": "일하는 방식 ① 동료를 대하는 태도"
+    },
+    {
+      "id": 6,
+      "type": "embed",
+      "duration": 25,
+      "src": "embed-way-2.html",
+      "title": "일하는 방식 ② 문제를 대하는 태도"
+    },
+    {
+      "id": 7,
+      "type": "embed",
+      "duration": 15,
+      "src": "embed-cp-cover.html",
+      "title": "캠페인 표지 · 3가지 약속"
+    },
+    {
+      "id": 8,
+      "type": "embed",
+      "duration": 20,
+      "src": "embed-cp-why-core.html",
+      "title": "이유 1 · 코어타임"
+    },
+    {
+      "id": 9,
+      "type": "embed",
+      "duration": 20,
+      "src": "embed-cp-why-proof.html",
+      "title": "이유 2 · 출퇴근 기록은 기준"
+    },
+    {
+      "id": 10,
+      "type": "embed",
+      "duration": 20,
+      "src": "embed-cp-p1-press.html",
+      "title": "약속 1 · 즉시 누르기"
+    },
+    {
+      "id": 11,
+      "type": "embed",
+      "duration": 20,
+      "src": "embed-cp-p2-notice.html",
+      "title": "약속 2 · 생각난 순간 바로 기록 시작"
+    },
+    {
+      "id": 12,
+      "type": "embed",
+      "duration": 20,
+      "src": "embed-cp-p3-fix.html",
+      "title": "약속 3 · 수정은 3일 이내"
+    },
+    {
+      "id": 13,
+      "type": "embed",
+      "duration": 25,
+      "src": "embed-cp-p3-reason.html",
+      "title": "약속 3 · 수정 사유"
+    },
+    {
+      "id": 14,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-cp-change.html",
+      "title": "변경 제도"
+    },
+    {
+      "id": 15,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-cp-remote-1.html",
+      "title": "재택근무 ① 언제 쓸 수 있나요"
+    },
+    {
+      "id": 16,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-cp-remote-reason.html",
+      "title": "재택근무 ② 사유 (질병·부상 요건)"
+    },
+    {
+      "id": 17,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-cp-remote-2.html",
+      "title": "재택근무 ③ 근무 시간"
+    },
+    {
+      "id": 18,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-berrygood-1.html",
+      "title": "베리굿 소개"
+    },
+    {
+      "id": 19,
+      "type": "embed",
+      "duration": 30,
+      "src": "embed-berrygood-2.html",
+      "title": "베리굿 사용 안내"
+    }
   ]
 }
 </script>

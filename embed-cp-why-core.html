@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>출퇴근 기록 캠페인 · 왜 ① 코어타임 (시계)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<link rel="stylesheet" href="deck-cp.css">
+</head>
+<body>
+<div id="stage-wrap">
+  <div id="stage">
+    <section class="s">
+      <div class="cp-top"><span class="cp-bug">출퇴근 기록 캠페인</span><span class="cp-tag">이유 1/2</span></div>
+
+      <!-- 시계: 중심 (660,545) 반지름 290. 10시 → 5시 방향(시계 방향) 초록 호 = 코어타임 10:00~17:00 -->
+      <svg class="cp-svg" viewBox="0 0 1920 1080" aria-hidden="true">
+        <circle class="clk-track" cx="660" cy="545" r="290"/>
+        <g>
+          <line class="clk-tick m" x1="660" y1="287" x2="660" y2="317"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(30 660 545)"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(60 660 545)"/>
+          <line class="clk-tick m" x1="660" y1="287" x2="660" y2="317" transform="rotate(90 660 545)"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(120 660 545)"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(150 660 545)"/>
+          <line class="clk-tick m" x1="660" y1="287" x2="660" y2="317" transform="rotate(180 660 545)"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(210 660 545)"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(240 660 545)"/>
+          <line class="clk-tick m" x1="660" y1="287" x2="660" y2="317" transform="rotate(270 660 545)"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(300 660 545)"/>
+          <line class="clk-tick"   x1="660" y1="289" x2="660" y2="305" transform="rotate(330 660 545)"/>
+        </g>
+        <text class="clk-num" x="660" y="355">12</text>
+        <text class="clk-num" x="850" y="545">3</text>
+        <text class="clk-num" x="660" y="735">6</text>
+        <text class="clk-num" x="470" y="545">9</text>
+        <path class="clk-arc" style="--len:1063" d="M408.9 400 A290 290 0 1 1 805 796.1"/>
+        <circle class="clk-end e1" cx="408.9" cy="400" r="30"/>
+        <circle class="clk-end e2" cx="805" cy="796.1" r="30"/>
+      </svg>
+
+      <div class="wc-time t1 cp-up" style="--d:.8s"><b>10:00</b><span>이 시각까지 출근</span></div>
+      <div class="wc-time t2 cp-up" style="--d:2.1s"><b>17:00</b><span>이 시각부터 퇴근</span></div>
+      <div class="wc-core rise d2" style="font-size:78px">코어타임</div>
+
+      <div class="wc-r">
+        <p class="cp-q rise d1" style="position:static">왜 지켜야 하나요?</p>
+        <h1 class="wc-h rise d2">자율출퇴근제는 코어타임을<br>준수하고 <em class="fx-g" style="--d:1.0s">책임감</em> 있게<br>근무한다는 <em class="fx-g" style="--d:1.3s">상호 신뢰</em>를<br>전제로 운영됩니다.</h1>
+        <div class="wc-rules bx">
+          <div class="wc-rule cp-up" style="--d:2.3s"><i></i><span><b class="t">10:<em class="fx-g" style="--d:3.0s">01</em></b>은 <b>지각</b></span></div>
+          <div class="wc-rule cp-up" style="--d:2.6s"><i></i><span><b class="t">16:<em class="fx-g" style="--d:3.3s">59</em></b>은 <b>조퇴</b></span></div>
+        </div>
+      </div>
+
+      <div class="cp-foot">기록은 <b>즉시</b>, 수정은 <b>3일 이내</b></div>
+    </section>
+  </div>
+</div>
+<script src="deck.js"></script>
+</body>
+</html>

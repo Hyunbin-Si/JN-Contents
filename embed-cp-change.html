@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>출퇴근 기록 캠페인 · 변경 제도 (로드맵)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<link rel="stylesheet" href="deck-cp.css">
+</head>
+<body>
+<div id="stage-wrap">
+  <div id="stage">
+    <section class="s">
+      <div class="cp-top"><span class="cp-bug">출퇴근 기록 캠페인</span><span class="cp-tag">변경 제도 · 3단계</span></div>
+      <h1 class="cp-h1 rise d1">변경 제도</h1>
+      <p class="rm-sub rise d2">10월부터 단계적으로 적용됩니다.</p>
+
+      <div class="rm-line cp-draw" style="--d:.5s"></div>
+
+      <div class="rm-stage on">
+        <span class="rm-mo cp-up" style="left:130px;--d:.6s">10월<i class="rm-now">지금</i></span>
+        <span class="rm-dot" style="left:130px"></span>
+        <div class="rm-card bx cp-up" style="left:130px;--d:1.0s">
+          <h3>근태관리 안내<small>(피플팀 참조)</small></h3>
+          <div class="rm-chg">
+            <div class="c cp-pop" style="--d:1.5s"><span class="l">사유</span><span class="v">필수 등록</span></div>
+            <div class="c cp-pop" style="--d:1.9s"><span class="l">수정 기한</span><span class="v">3일 이내</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rm-stage">
+        <span class="rm-mo cp-up" style="left:700px;--d:.8s">11~12월<i class="rm-now">지금</i></span>
+        <span class="rm-dot" style="left:700px"></span>
+        <div class="rm-card bx cp-up" style="left:700px;--d:1.2s">
+          <h3>증빙 제출 요청<br>피플팀 확인<small>(승인 단계 추가)</small></h3>
+          <div class="sub">세부 내용은 별도 안내</div>
+        </div>
+      </div>
+
+      <div class="rm-stage">
+        <span class="rm-mo cp-up" style="left:1270px;--d:1.0s">27년 1월<i class="rm-now">지금</i></span>
+        <span class="rm-dot" style="left:1270px"></span>
+        <div class="rm-card bx cp-up" style="left:1270px;--d:1.4s">
+          <h3>운영 현황 점검 후 제도 보완 검토</h3>
+        </div>
+      </div>
+
+      <div class="cp-foot">기록은 <b>즉시</b>, 수정은 <b>3일 이내</b></div>
+    </section>
+  </div>
+</div>
+<script src="deck.js"></script>
+<script>
+/* 현재 단계 자동 강조 — 오늘 날짜 기준. HTML 에는 10월이 .on 으로 들어 있어 JS 가 안 돌아도 화면이 나온다. */
+(function(){
+  var steps = document.querySelectorAll('.rm-stage');
+  var starts = [new Date(2026, 9, 1), new Date(2026, 10, 1), new Date(2027, 0, 1)];  /* 10월 · 11월 · 27년 1월 */
+  var end = new Date(2027, 1, 1);                                                      /* 이후엔 강조 없음 */
+  var now = new Date(), cur = -1;
+  for (var i = 0; i < starts.length; i++) {
+    var to = (i + 1 < starts.length) ? starts[i + 1] : end;
+    if (now >= starts[i] && now < to) cur = i;
+  }
+  for (var j = 0; j < steps.length; j++) steps[j].classList.toggle('on', j === cur);
+})();
+</script>
+</body>
+</html>

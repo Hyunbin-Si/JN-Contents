@@ -62,7 +62,7 @@ html, body {
 /* ============================================================
    STAGE & SLIDE BASE
 ============================================================ */
-#stage { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+#stage { width: 100vw; height: 100vh; position: relative; overflow: hidden; background: #fff; }
 .slide {
   position: absolute; inset: 0;
   opacity: 0;
@@ -71,7 +71,8 @@ html, body {
   overflow: hidden;
 }
 .slide.active { opacity: 1; pointer-events: all; }
-.embed-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+/* 임베드는 보기 전용 — 클릭·키보드가 iframe에 먹히지 않고 엔진(일시정지·←→)으로 전달된다 */
+.embed-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #fff; pointer-events: none; }
 .s-el {
   opacity: 0; transform: translateY(14px);
   transition:
@@ -838,7 +839,7 @@ html, body {
 #ui { position: fixed; inset: 0; z-index: 200; pointer-events: none; transition: opacity 0.5s ease; }
 #ui.ui-hidden { opacity: 0; }
 #progress-wrap { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(14,26,46,0.08); }
-#progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--blue), var(--cyan)); box-shadow: 0 0 10px rgba(26,174,209,0.4); }
+#progress-bar { height: 100%; width: 0%; background: var(--gn-accent); }
 #slide-counter {
   position: absolute; top: 18px; right: 88px;
   font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
@@ -881,7 +882,7 @@ html, body {
   background: rgba(14,26,46,0.18); cursor: pointer; pointer-events: all;
   transition: background 0.25s, width 0.3s, border-radius 0.3s;
 }
-.dot.active { background: var(--ink); width: 22px; border-radius: 4px; }
+.dot.active { background: var(--gn-accent); width: 22px; border-radius: 4px; }
 #pause-overlay {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -896,7 +897,7 @@ html, body {
 #pause-overlay.show { opacity: 1; }
 #cursor {
   position: fixed; width: 22px; height: 22px;
-  border-radius: 50%; background: var(--blue);
+  border-radius: 50%; background: var(--gn-accent);
   mix-blend-mode: multiply; pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.2s ease, height 0.2s ease, opacity 0.4s ease;
@@ -907,9 +908,9 @@ html, body {
   position: fixed; top: 14px; left: 22px;
   font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
   padding: 6px 12px; border-radius: 999px;
-  background: rgba(26,174,209,0.13);
-  border: 1px solid rgba(26,174,209,0.3);
-  color: var(--blue); font-weight: 700;
+  background: rgba(13,204,90,0.13);
+  border: 1px solid rgba(13,204,90,0.35);
+  color: #087A34; font-weight: 700;
   opacity: 0; transition: opacity 0.3s ease;
   z-index: 220; pointer-events: none;
 }

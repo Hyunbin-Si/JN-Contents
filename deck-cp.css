@@ -1,0 +1,251 @@
+/* ============================================================
+   출퇴근 기록 캠페인 (2026-10-15 재설계) — deck.css 다음에 불러온다
+   원칙
+     · 슬라이드마다 「한 가지 도해」가 주인공이다. 글은 짧게, 숫자·도형은 크게.
+     · 같은 것은 공통 틀(캠페인 이름 · 단계 칩 · 하단 슬로건)뿐, 본문 구도는 슬라이드마다 다르다.
+     · 그림(일러스트)은 없다. 시계·반경·날짜 칸·로드맵 같은 「정보 도형」만 쓴다.
+     · 흰 바탕 + 그린 한 가지. 그린 면 위 글자는 어두운 잉크(#0F1B14).
+   구성
+     · .cv-*  표지            · .wc-* .clk-* 왜① 코어타임(시계)   · .wp-*  왜② 출퇴근 기록은 기준(관계도)
+     · .pr-*  약속 1·2·3 (그린 패널 + 도해)                        · .ox-*  수정 사유 가능/불가
+     · .rm-*  변경 제도(가로 로드맵)  · .rf-*  재택 ① 언제(분기도) · .rs-*  재택 ② 사유(조건+조건=사유)
+     · .rd-*  재택 ③ 하루 시간 막대
+   캠페인이 끝나면 이 파일과 embed-cp-*.html 을 함께 지우면 된다.
+============================================================ */
+
+/* ── 공통 틀 ───────────────────────────────────────── */
+.cp-top{position:absolute;left:130px;right:130px;top:88px;height:46px;display:flex;align-items:center;gap:20px;}
+.cp-bug{display:inline-flex;align-items:center;gap:14px;font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--green-deep);}
+.cp-bug::before{content:'';width:16px;height:16px;border-radius:50%;background:var(--green);}
+.cp-tag{font-size:24px;font-weight:800;letter-spacing:-.01em;color:var(--green-deep);background:var(--green-soft);
+  border:2px solid var(--green-line);border-radius:999px;padding:3px 20px 5px;}
+.cp-foot{position:absolute;left:130px;bottom:90px;font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--ink-3);}
+.cp-foot b{font-weight:800;color:var(--green-deep);}
+.cp-q{position:absolute;left:130px;top:166px;font-size:38px;font-weight:700;letter-spacing:-.02em;color:var(--ink-3);}
+.cp-h1{position:absolute;left:130px;top:150px;font-size:88px;line-height:1.2;font-weight:900;letter-spacing:-.055em;white-space:nowrap;}
+.cp-h1 em{font-style:normal;color:var(--green-ink);}
+.cp-svg{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;}
+
+/* 등장 효과 (keyframes 는 deck.css 의 「의미 연출 효과」 + 아래 것) — 끝 상태가 곧 완성 화면 */
+.cp-up{animation:beatIn .7s var(--d,0s) both;}
+.cp-pop{animation:chipPop .6s var(--d,0s) both;}
+.cp-land{animation:land .7s var(--d,0s) both;}
+.cp-draw{transform-origin:left center;animation:draw .7s var(--d,0s) both;}
+@keyframes cpArc{from{stroke-dashoffset:var(--len);}}
+@keyframes cpGrow{from{opacity:0;transform:scale(.2);}}
+@keyframes cpPing{0%{opacity:.5;transform:scale(.08);}100%{opacity:0;transform:scale(1);}}
+
+/* ── 표지 ──────────────────────────────────────────── */
+.cv-l{position:absolute;left:130px;top:150px;bottom:160px;width:1000px;display:flex;flex-direction:column;justify-content:center;}
+.cv-k{font-size:44px;font-weight:700;letter-spacing:-.02em;color:var(--ink-3);}
+.cv-h{margin-top:34px;font-size:132px;line-height:1.24;font-weight:900;letter-spacing:-.055em;white-space:nowrap;}
+.cv-h .ln{display:block;}
+.cv-h em{font-style:normal;color:var(--green-ink);}
+.cv-r{position:absolute;right:130px;top:150px;bottom:160px;width:560px;border-radius:56px;background:var(--green);
+  padding:48px 46px 28px;display:flex;flex-direction:column;animation:fromR .8s .5s both;}
+.cv-r .pt{font-size:36px;font-weight:800;letter-spacing:-.02em;color:var(--ink);}
+.cv-r ol{list-style:none;margin-top:20px;flex:1;display:flex;flex-direction:column;}
+.cv-r li{flex:1;display:flex;align-items:center;gap:24px;border-top:3px solid rgba(15,27,20,.2);}
+.cv-r li i{flex:0 0 auto;width:76px;height:76px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--num);
+  font-style:normal;font-weight:800;font-size:36px;display:flex;align-items:center;justify-content:center;letter-spacing:0;}
+.cv-r li b{display:block;font-size:46px;font-weight:900;letter-spacing:-.045em;line-height:1.2;color:var(--ink);white-space:nowrap;}
+.cv-r li span{display:block;margin-top:2px;font-size:28px;font-weight:600;letter-spacing:-.02em;color:rgba(15,27,20,.72);}
+
+/* ── 왜 ① 코어타임 — 시계 ─────────────────────────── */
+.clk-track{fill:none;stroke:#E8EFEA;stroke-width:44;}
+.clk-arc{fill:none;stroke:var(--green);stroke-width:44;stroke-dasharray:1063;stroke-dashoffset:0;
+  animation:cpArc 1.5s .7s cubic-bezier(.45,.05,.25,1) both;}
+.clk-end{fill:#fff;stroke:var(--ink);stroke-width:9;transform-box:fill-box;transform-origin:center;}
+.clk-end.e1{animation:chipPop .6s .6s both;}
+.clk-end.e2{animation:chipPop .6s 2.0s both;}
+.clk-tick{stroke:#B5C2B9;stroke-width:5;stroke-linecap:round;}
+.clk-tick.m{stroke:#7C8A82;stroke-width:8;}
+.clk-num{font-family:var(--num);font-weight:800;font-size:40px;fill:#7C8A82;text-anchor:middle;dominant-baseline:central;}
+.wc-time{position:absolute;}
+.wc-time b{display:block;font-family:var(--num);font-weight:800;font-size:64px;letter-spacing:-.04em;line-height:1;color:var(--ink);}
+.wc-time span{display:block;margin-top:8px;font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--ink-3);}
+.wc-time.t1{left:130px;width:235px;top:360px;text-align:right;}
+.wc-time.t2{left:875px;top:772px;text-align:left;}
+.wc-core{position:absolute;left:460px;width:400px;top:495px;text-align:center;font-size:86px;font-weight:900;letter-spacing:-.055em;line-height:1;color:var(--ink);}
+.wc-r{position:absolute;left:1100px;right:130px;top:170px;}
+.wc-h{margin-top:16px;font-size:56px;line-height:1.32;font-weight:800;letter-spacing:-.05em;text-wrap:balance;}
+.wc-h em{font-style:normal;color:var(--green-ink);}
+/* 지각·조퇴 예시 — 조용한 두 줄. 시계 끝 마커(흰 원 + 잉크 테두리)와 같은 모양의 작은 점만 붙인다 */
+.wc-rules{margin-top:40px;border-radius:36px;background:var(--surface);border:2px solid var(--line);padding:6px 38px;}
+.wc-rule{display:flex;align-items:center;gap:24px;height:106px;font-size:58px;font-weight:500;letter-spacing:-.04em;color:var(--ink-2);white-space:nowrap;}
+.wc-rule + .wc-rule{border-top:2px solid var(--line);}
+.wc-rule b{font-weight:800;color:var(--ink);}
+/* 포인트: 「1분」이 갈리는 곳(01 · 59)만 초록 — 시계의 초록 호와 이어지고, 메시지(1분만 지나도)와도 맞는다. 시간은 시계 라벨과 같은 숫자 글꼴 */
+.wc-rule b.t{font-family:var(--num);letter-spacing:-.02em;}
+.wc-rule b.t em{font-style:normal;color:var(--green-ink);}
+.wc-rule i{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#fff;border:7px solid var(--ink);}
+
+/* ── 왜 ② 기준 — 문장이 주인공 ──────────────────────────
+   처음엔 「기록 ─ 기준 ─▶ 확인 · 운영」 갈래 도해였는데 「너무 복잡하다」 지적(10/15)으로 걷고,
+   윌리가 준 문장을 크게 + 「따라서」 한 줄 요청만 남겼다. */
+.wp-stmt{position:absolute;left:130px;right:130px;top:352px;font-size:72px;line-height:1.5;font-weight:800;letter-spacing:-.05em;}
+.wp-stmt .ln{display:block;white-space:nowrap;}
+.wp-stmt em{font-style:normal;font-weight:900;color:var(--green-ink);}
+.wp-band{position:absolute;left:130px;right:130px;top:664px;height:152px;border-radius:48px;background:var(--green-soft);
+  border:3px solid var(--green-line);display:flex;align-items:center;gap:20px;padding:0 44px;white-space:nowrap;}
+.wp-band .pill{flex:0 0 auto;background:var(--ink);color:#fff;font-size:30px;letter-spacing:-.01em;padding:11px 28px 13px;}
+.wp-band .t{font-size:56px;font-weight:800;letter-spacing:-.05em;color:var(--ink);}
+.wp-band .cg{flex:0 0 auto;border-radius:999px;background:var(--green);color:var(--ink);font-size:56px;font-weight:900;letter-spacing:-.05em;padding:6px 32px 10px;}
+
+/* ── 약속 1·2·3 — 왼쪽 큰 숫자 + 헤드라인, 오른쪽 그린 패널(도해) ─── */
+.pr-l{position:absolute;left:130px;top:172px;bottom:160px;width:790px;display:flex;flex-direction:column;}
+.pr-n{font-family:var(--num);font-weight:900;font-size:280px;line-height:.8;letter-spacing:-.06em;color:var(--green-ink);margin-left:-10px;}
+.pr-h{margin-top:46px;font-size:88px;line-height:1.2;font-weight:900;letter-spacing:-.055em;}
+.pr-h em{font-style:normal;color:var(--green-ink);}
+.pr-s{margin-top:28px;font-size:40px;line-height:1.5;font-weight:500;letter-spacing:-.03em;color:var(--ink-2);}
+.pr-s b{font-weight:800;color:var(--ink);}
+.pr-p{position:absolute;left:960px;right:130px;top:150px;bottom:160px;border-radius:56px;background:var(--green);overflow:hidden;animation:fromR .8s .3s both;}
+.pr-p svg{position:absolute;left:0;top:0;width:830px;height:770px;}
+
+/* 약속 1 — 출근 · 퇴근 두 개의 「누르기」 (GPS 인증 범위는 뺐다 — 주 메시지는 「즉시 누르기 · 잘 지키기」) */
+@keyframes btPing{0%{opacity:.55;transform:scale(1);}100%{opacity:0;transform:scale(1.38);}}
+.bt-row{position:absolute;left:0;right:0;top:128px;display:flex;justify-content:center;gap:56px;}
+.bt{position:relative;width:276px;height:276px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:82px;font-weight:900;letter-spacing:-.05em;color:var(--ink);}
+.bt .rg{position:absolute;inset:-4px;border-radius:50%;border:6px solid var(--ink);opacity:0;animation:btPing 1.1s var(--d,0s) 2 ease-out both;}
+.bt-go{position:absolute;left:72px;right:72px;top:496px;height:150px;border-radius:40px;background:var(--ink);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:76px;font-weight:900;letter-spacing:-.05em;}
+.bt-go em{font-style:normal;color:var(--green);}
+
+/* 약속 2 — 깜빡 → 알아챔 → 즉시 기록 */
+.st-wrap{position:absolute;inset:50px 72px 50px;display:flex;flex-direction:column;justify-content:space-between;}
+.st{height:158px;border-radius:40px;background:#fff;display:flex;align-items:center;padding:0 46px;gap:24px;white-space:nowrap;
+  font-size:54px;font-weight:800;letter-spacing:-.045em;color:var(--ink);}
+.st small{flex:0 0 auto;font-family:var(--num);font-size:28px;font-weight:800;letter-spacing:.06em;color:var(--ink-3);}
+.st.dim{color:var(--ink-2);}
+.st.go{background:var(--ink);color:#fff;font-size:76px;font-weight:900;justify-content:center;gap:0;}
+.st.go em{font-style:normal;color:var(--green);}
+.st-ar{height:58px;display:flex;align-items:center;justify-content:center;}
+.st-ar i{width:0;height:0;border-style:solid;border-width:30px 22px 0 22px;border-color:var(--ink) transparent transparent transparent;}
+
+/* 약속 3 — 3일 칸 */
+.d-t{position:absolute;left:52px;top:52px;font-size:42px;font-weight:800;letter-spacing:-.03em;color:var(--ink);}
+.d-row{position:absolute;left:48px;right:48px;top:150px;display:flex;gap:28px;}
+.dy{position:relative;flex:1;height:360px;border-radius:40px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:46px;gap:2px;}
+.dy small{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--ink-3);}
+.dy b{font-family:var(--num);font-weight:900;font-size:190px;line-height:1;letter-spacing:-.05em;color:var(--ink);}
+.dy.last{background:var(--ink);}
+.dy.last small{color:var(--green);}
+.dy.last b{color:#fff;}
+.dy .fl{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);background:var(--green);color:var(--ink);font-size:30px;font-weight:900;letter-spacing:-.02em;border-radius:999px;padding:5px 26px 7px;}
+.d-note{position:absolute;left:48px;right:48px;top:580px;display:flex;align-items:center;justify-content:center;gap:20px;white-space:nowrap;}
+.d-note .pl{background:#fff;border-radius:999px;padding:14px 40px 18px;font-size:54px;font-weight:900;letter-spacing:-.045em;color:var(--ink);}
+.d-note .pl.k{background:var(--ink);color:#fff;}
+.d-note .pl b{font-weight:900;color:var(--green-ink);}
+.d-note .pn{font-family:var(--num);font-size:56px;font-weight:800;line-height:1;color:var(--ink);}
+.d-sub{position:absolute;left:0;width:830px;top:660px;text-align:center;font-size:36px;font-weight:700;letter-spacing:-.03em;color:rgba(15,27,20,.75);}
+
+/* ── 수정 사유 — 가능 / 불가 ─────────────────────── */
+.ox-wrap{position:absolute;left:130px;right:130px;top:290px;bottom:160px;display:grid;grid-template-columns:1.22fr 1fr;gap:36px;}
+.ox-ok,.ox-no{border-radius:48px;padding:44px 52px;display:flex;flex-direction:column;}
+.ox-ok{background:var(--green-soft);border:3px solid var(--green-line);}
+.ox-no{background:var(--ink);color:#fff;}
+.ox-hd{align-self:flex-start;font-size:34px;font-weight:800;letter-spacing:-.03em;border-radius:999px;padding:8px 30px 10px;}
+.ox-ok .ox-hd{background:var(--green);color:var(--ink);}
+.ox-no .ox-hd{background:#fff;color:var(--ink);}
+.ox-ok ul{list-style:none;margin-top:30px;flex:1;display:flex;flex-direction:column;justify-content:space-around;}
+.ox-ok li{display:flex;align-items:center;gap:28px;font-size:60px;font-weight:900;letter-spacing:-.05em;white-space:nowrap;}
+.ox-ok li i{flex:0 0 auto;width:80px;height:80px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;}
+.ox-ok li i::after{content:'';width:34px;height:18px;border-left:9px solid var(--ink);border-bottom:9px solid var(--ink);transform:translateY(-4px) rotate(-45deg);}
+.ox-no .nb{margin:auto 0;}
+.ox-no .x{width:112px;height:112px;border-radius:50%;background:#fff;position:relative;}
+.ox-no .x::before,.ox-no .x::after{content:'';position:absolute;left:50%;top:50%;width:58px;height:10px;border-radius:5px;background:var(--ink);}
+.ox-no .x::before{transform:translate(-50%,-50%) rotate(45deg);}
+.ox-no .x::after{transform:translate(-50%,-50%) rotate(-45deg);}
+.ox-no p{margin-top:30px;font-size:58px;line-height:1.3;font-weight:800;letter-spacing:-.05em;}
+.ox-no p em{font-style:normal;color:var(--green);}
+.ox-no p small{display:block;margin-top:14px;font-size:44px;font-weight:700;color:rgba(255,255,255,.82);letter-spacing:-.04em;}
+
+/* ── 변경 제도 — 가로 로드맵 ─────────────────────── */
+.rm-sub{position:absolute;left:130px;top:262px;font-size:40px;font-weight:500;letter-spacing:-.03em;color:var(--ink-2);}
+.rm-line{position:absolute;left:130px;right:130px;top:470px;height:10px;border-radius:5px;background:var(--green-line);}
+.rm-col{position:absolute;top:0;width:520px;}
+.rm-col.c1{left:130px;} .rm-col.c2{left:700px;} .rm-col.c3{left:1270px;}
+.rm-mo{position:absolute;top:340px;font-size:100px;font-weight:900;letter-spacing:-.055em;line-height:1;color:var(--ink-3);white-space:nowrap;}
+.rm-dot{position:absolute;top:452px;width:46px;height:46px;border-radius:50%;background:#fff;border:8px solid var(--green-line);}
+.rm-now{font-style:normal;display:none;vertical-align:middle;margin-left:18px;position:relative;top:-8px;font-size:26px;font-weight:900;letter-spacing:-.01em;background:var(--green);color:var(--ink);border-radius:999px;padding:4px 20px 6px;}
+.rm-stage{display:contents;}
+.rm-card{position:absolute;top:540px;width:520px;height:380px;border-radius:44px;background:var(--surface);border:2px solid var(--line);padding:34px 40px;}
+.rm-card h3{font-size:50px;line-height:1.28;font-weight:800;letter-spacing:-.05em;}
+.rm-card h3 small{display:block;margin-top:4px;font-size:30px;font-weight:600;letter-spacing:-.02em;color:var(--ink-3);}
+.rm-card .sub{margin-top:16px;font-size:30px;font-weight:600;letter-spacing:-.02em;color:var(--ink-3);}
+.rm-chg{margin-top:22px;display:flex;flex-direction:column;gap:12px;}
+.rm-chg .c{display:flex;align-items:center;justify-content:space-between;border-radius:28px;background:#fff;border:2px solid var(--green-line);padding:8px 26px 10px;}
+.rm-chg .l{font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--ink-3);}
+.rm-chg .v{font-size:50px;font-weight:900;letter-spacing:-.05em;line-height:1.1;color:var(--green-ink);white-space:nowrap;}
+.rm-stage.on .rm-mo{color:var(--ink);}
+.rm-stage.on .rm-dot{background:var(--green);border-color:var(--ink);transform:scale(1.25);}
+.rm-stage.on .rm-now{display:inline-block;}
+.rm-stage.on .rm-card{background:var(--green-soft);border:3px solid var(--green);}
+
+/* ── 재택 ① 대상 — 분기도 ────────────────────────── */
+.rf-n{position:absolute;border-radius:44px;display:flex;flex-direction:column;justify-content:center;font-weight:900;letter-spacing:-.05em;line-height:1.2;}
+.rf-q{left:130px;top:330px;width:470px;height:280px;background:var(--surface);border:3px solid var(--line);padding:0 42px;font-size:48px;}
+.rf-d{left:700px;top:390px;width:340px;height:160px;background:#fff;border:6px solid var(--ink);align-items:center;text-align:center;font-size:42px;border-radius:999px;}
+.rf-y{left:1270px;top:296px;width:520px;height:200px;background:var(--green);padding:0 48px;font-size:72px;color:var(--ink);}
+.rf-y small{display:block;margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;}
+.rf-y small em{font-style:normal;font-family:var(--num);font-weight:900;font-size:54px;}
+.rf-no{left:1270px;top:536px;width:520px;height:170px;background:var(--ink);padding:0 48px;font-size:64px;color:#fff;}
+.rf-no small{display:block;margin-top:4px;font-size:30px;font-weight:600;letter-spacing:-.02em;color:rgba(255,255,255,.78);}
+.rf-br{position:absolute;font-size:28px;font-weight:800;letter-spacing:-.02em;border-radius:999px;padding:3px 18px 5px;}
+.rf-br.y{background:var(--green-soft);color:var(--green-deep);border:2px solid var(--green-line);}
+.rf-br.n{background:#fff;color:var(--ink-2);border:2px solid var(--line);}
+.rf-tile{position:absolute;top:748px;height:150px;border-radius:40px;display:flex;align-items:center;gap:26px;padding:0 44px;white-space:nowrap;}
+.rf-tile.a{left:130px;width:770px;background:var(--green-soft);border:3px solid var(--green-line);}
+.rf-tile.b{left:940px;width:850px;background:var(--surface);border:2px solid var(--line);}
+.rf-tile .k{flex:0 0 auto;background:var(--ink);color:#fff;font-size:28px;font-weight:700;letter-spacing:-.01em;border-radius:999px;padding:8px 24px 10px;}
+.rf-tile .t{font-size:46px;font-weight:900;letter-spacing:-.05em;}
+.rf-tile .t small{font-size:34px;font-weight:700;color:var(--ink-2);letter-spacing:-.04em;}
+.rf-fn{position:absolute;left:134px;top:916px;font-size:28px;font-weight:600;letter-spacing:-.02em;color:var(--ink-3);white-space:nowrap;}
+/* 분기 화살표 — 선이 그려지고 끝에서 화살촉이 톡 */
+.rf-ln{stroke-dasharray:var(--len);stroke-dashoffset:0;animation:cpArc .5s var(--d,0s) cubic-bezier(.4,.1,.3,1) both;}
+.rf-hd{transform-box:fill-box;transform-origin:center;animation:chipPop .4s var(--d,0s) both;}
+
+/* ── 재택 ② 하루 시간 막대 ────────────────────────── */
+.rd-bar{position:absolute;left:130px;right:130px;top:330px;height:200px;display:flex;border-radius:44px;overflow:hidden;}
+.rd-bar .sg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;white-space:nowrap;}
+.rd-bar .sg b{font-size:42px;font-weight:900;letter-spacing:-.045em;}
+.rd-bar .sg span{font-family:var(--num);font-size:30px;font-weight:800;letter-spacing:0;}
+.rd-bar .s1,.rd-bar .s3{flex:2;background:var(--green-soft);border:3px solid var(--green-line);color:var(--green-deep);}
+.rd-bar .s1{border-radius:44px 0 0 44px;border-right:0;}
+.rd-bar .s3{border-radius:0 44px 44px 0;border-left:0;}
+.rd-bar .s2{flex:7;background:var(--green);color:var(--ink);}
+.rd-bar .s2 b{font-size:64px;}
+.rd-bar .s2 span{font-size:36px;}
+.rd-ax{position:absolute;top:548px;font-family:var(--num);font-size:34px;font-weight:800;color:var(--ink-3);transform:translateX(-50%);}
+.rd-ax::before{content:'';position:absolute;left:50%;top:-14px;width:3px;height:10px;background:#B5C2B9;transform:translateX(-50%);}
+.rd-ax.l{transform:none;}
+.rd-ax.l::before{left:1px;transform:none;}
+.rd-ax.r{transform:none;left:auto;right:130px;}
+.rd-ax.r::before{left:auto;right:1px;transform:none;}
+.rd-card{position:absolute;top:650px;height:250px;border-radius:48px;display:flex;flex-direction:column;justify-content:center;padding:0 56px;white-space:nowrap;}
+.rd-card.a{left:130px;width:770px;background:var(--surface);border:2px solid var(--line);}
+.rd-card.b{left:940px;width:850px;background:var(--ink);color:#fff;}
+.rd-card .k{font-size:34px;font-weight:700;letter-spacing:-.03em;color:var(--ink-3);}
+.rd-card.b .k{color:rgba(255,255,255,.8);}
+.rd-card .v{margin-top:6px;font-size:84px;font-weight:900;letter-spacing:-.055em;line-height:1.15;}
+.rd-card .v em{font-style:normal;color:var(--green-ink);}
+.rd-card.b .v em{color:var(--green);}
+.rd-card .v small{display:block;margin-top:2px;font-size:40px;font-weight:700;letter-spacing:-.04em;color:var(--ink-2);}
+
+/* ── 재택 사유 — 조건 + 조건 = 사유, 예시, 주의 ───────── */
+.rs-eq{position:absolute;left:130px;right:130px;top:340px;height:232px;display:flex;align-items:stretch;gap:18px;}
+.rs-box{border-radius:40px;display:flex;flex-direction:column;justify-content:center;padding:0 38px;font-weight:900;letter-spacing:-.05em;line-height:1.2;}
+.rs-a{flex:0 0 640px;background:var(--surface);border:3px solid var(--line);font-size:58px;}
+.rs-a small{display:block;margin-bottom:8px;font-size:38px;line-height:1.35;font-weight:700;letter-spacing:-.03em;color:var(--ink-2);}
+.rs-b{flex:0 0 450px;background:var(--surface);border:3px solid var(--line);font-size:58px;}
+.rs-c{flex:1;background:var(--green);font-size:64px;color:var(--ink);}
+.rs-op{flex:0 0 46px;display:flex;align-items:center;justify-content:center;font-family:var(--num);font-size:64px;font-weight:800;line-height:1;color:var(--ink-3);}
+.rs-ex{position:absolute;left:130px;right:130px;top:604px;display:flex;align-items:center;gap:14px;white-space:nowrap;}
+.rs-ex .k{flex:0 0 auto;background:var(--ink);color:#fff;font-size:28px;font-weight:700;letter-spacing:-.01em;border-radius:999px;padding:9px 26px 11px;}
+.rs-ex .c{flex:0 0 auto;background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:9px 28px 11px;font-size:36px;font-weight:700;letter-spacing:-.04em;color:var(--ink);}
+.rs-ex .e{flex:0 0 auto;font-size:36px;font-weight:700;color:var(--ink-3);}
+.rs-warn{position:absolute;left:130px;right:130px;top:736px;height:164px;border-radius:44px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:32px;padding:0 48px;white-space:nowrap;}
+.rs-warn .x{flex:0 0 auto;width:84px;height:84px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--num);font-size:56px;font-weight:900;line-height:1;}
+.rs-warn p{font-size:46px;font-weight:800;letter-spacing:-.045em;}
+.rs-warn p em{font-style:normal;color:var(--green);}
