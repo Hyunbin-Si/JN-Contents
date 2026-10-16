@@ -6,7 +6,7 @@
   "slides": [
     { "id": 1, "type": "embed", "src": "embed-mission.html", "title": "미션" },
     { "id": 2, "type": "embed", "src": "embed-vision.html", "title": "비전" },
-    { "id": 3, "type": "embed", "src": "embed-context.html", "title": "82명이 같은 기준으로" },
+    { "id": 3, "type": "embed", "src": "embed-context.html", "title": "모두가 같은 기준으로" },
     { "id": 4, "type": "embed", "duration": 30, "src": "embed-values.html", "title": "핵심가치" },
     { "id": 5, "type": "embed", "duration": 25, "src": "embed-way-1.html", "title": "일하는 방식 ① 동료를 대하는 태도" },
     { "id": 6, "type": "embed", "duration": 25, "src": "embed-way-2.html", "title": "일하는 방식 ② 문제를 대하는 태도" },

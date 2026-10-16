@@ -13,7 +13,6 @@
     display:flex;align-items:center;justify-content:center;text-align:center;}
   .title{font-size:104px;line-height:1.4;font-weight:800;letter-spacing:-.05em;color:var(--ink);}
   .title em{font-style:normal;color:var(--green-ink);}
-  .title .num{font-size:1.18em;letter-spacing:-.04em;}
 </style>
 </head>
 <body>
@@ -21,35 +20,11 @@
   <div id="stage">
     <section class="s">
       <div class="panel">
-        <h1 class="title rise d1"><em><span class="num">82</span>명</em>이 같은 기준으로 움직일 때,<br>중고나라는 <em class="fx-g" style="--d:2.2s">시장의 기준</em>이 된다.</h1>
+        <h1 class="title rise d1"><em class="fx-g" style="--d:.9s">모두</em>가 같은 기준으로 움직일 때,<br>중고나라는 <em class="fx-g" style="--d:2.2s">시장의 기준</em>이 된다.</h1>
       </div>
     </section>
   </div>
 </div>
 <script src="deck.js"></script>
-<script>
-/* 82 카운트업: 최종 폭을 먼저 재서 고정해 두면 숫자가 바뀌어도 문장이 흔들리지 않는다. JS가 안 돌아도 HTML 에는 82 가 들어 있다. */
-(function(){
-  var n = document.querySelector('.title .num');
-  if (!n) return;
-  var TARGET = 82;
-  function run(){
-    n.textContent = String(TARGET);
-    n.style.display = 'inline-block';
-    n.style.textAlign = 'right';
-    n.style.minWidth = n.offsetWidth + 'px';
-    n.textContent = '0';
-    var t0 = null;
-    function step(ts){
-      if (t0 === null) t0 = ts;
-      var p = Math.min(Math.max((ts - t0 - 450) / 1200, 0), 1);
-      n.textContent = String(Math.round(TARGET * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(run);
-})();
-</script>
 </body>
 </html>
