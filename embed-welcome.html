@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome · 신규 오피스 입주 환영</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<style>
+  /* ── 신규 오피스 입주 환영 (2026-11) ────────────────────────────────
+     흰 바탕 + 그린. 글자는 튀어 오르고, 캔버스에서 불꽃이 터지고 꽃잎이 내린다.
+     불꽃놀이 연출은 40초 노출 기준. ?render=1 은 영상 캡처용(시간을 밖에서 돌린다). */
+  #fx{position:absolute;left:0;top:0;width:1920px;height:1080px;z-index:2;pointer-events:none;}
+  .wc{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+
+  .hero{display:flex;font-family:var(--num);font-weight:900;font-size:340px;line-height:1;letter-spacing:-.045em;color:var(--green-ink);}
+  .hero span{display:inline-block;animation:letterPop .9s cubic-bezier(.2,1.5,.3,1) calc(.25s + var(--i) * .09s) both;}
+  @keyframes letterPop{from{opacity:0;transform:translateY(90px) scale(.4) rotate(-10deg);}}
+
+  .sub{margin-top:36px;font-size:100px;line-height:1.2;font-weight:800;letter-spacing:-.05em;color:var(--ink);animation:beatIn .8s 1.3s both;}
+  .sub em{font-style:normal;color:var(--green-ink);}
+
+</style>
+</head>
+<body>
+<div id="stage-wrap">
+  <div id="stage">
+    <section class="s">
+      <canvas id="fx" width="1920" height="1080"></canvas>
+      <div class="wc">
+        <h1 class="hero" aria-label="Welcome"><span style="--i:0">W</span><span style="--i:1">e</span><span style="--i:2">l</span><span style="--i:3">c</span><span style="--i:4">o</span><span style="--i:5">m</span><span style="--i:6">e</span></h1>
+        <p class="sub">새로운 오피스에 오신 것을 <em>환영합니다!</em></p>
+      </div>
+    </section>
+  </div>
+</div>
+<script src="deck.js"></script>
+<script>
+/* 불꽃놀이 + 꽃잎 — 1920×1080 무대 좌표 그대로 그린다. 노출 40초 동안 계속 터지면 피로하므로
+   「시작 몰아치기 → 피날레 → 조용히 두고 가끔 한두 발」 순서로 짜고, 꽃잎도 같은 곡선으로 줄인다. 화면이 다시 열릴 때마다 처음부터. */
+(function () {
+  var cv = document.getElementById('fx'), ctx = cv.getContext('2d'), W = 1920, H = 1080;
+  var RENDER = new URLSearchParams(location.search).get('render') === '1', simT = 0;
+  function clock() { return RENDER ? simT : performance.now(); }
+
+  var DARK = ['#0A9A42', '#087A34', '#0DCC5A'];
+  var MID  = ['#0DCC5A', '#3DDC84', '#0A9A42', '#5BE396'];
+  var PET  = ['#BFEBD0', '#8FE3B0', '#6EDC9B', '#A8EEC6', '#D4F5E1'];
+  var sparks = [], pets = [], rings = [], rockets = [], timers = [], t0 = 0, acc = 0;
+  function R(a, b) { return a + Math.random() * (b - a); }
+  function pick(a) { return a[(Math.random() * a.length) | 0]; }
+
+  /* [시작 ms, 간격 ms, [[x, 터지는 높이], …]] — 글자(가운데)를 비우고 위·아래 모서리에서 터뜨린다 */
+  var SHOW = [
+    [700,   260, [[250, 250], [1670, 230], [220, 840], [1700, 850]]],                                   // 시작: 펑펑펑펑
+    [4200,  260, [[620, 190], [1300, 180], [960, 890]]],
+    [7200,  260, [[200, 340], [1720, 360], [480, 870], [1440, 880]]],
+    [10500, 170, [[200, 250], [520, 170], [860, 880], [1060, 180], [1400, 880], [1720, 260], [960, 150]]], // 피날레
+    [23000, 0,   [[960, 190]]],                                                                          // 이후 조용히, 가끔 한 발
+    [33000, 300, [[430, 230], [1490, 240]]]
+  ];
+
+  function petalPath(s) {
+    ctx.beginPath();
+    ctx.moveTo(0, s * .62);
+    ctx.bezierCurveTo(-s * .62, s * .10, -s * .50, -s * .58, -s * .12, -s * .50);
+    ctx.quadraticCurveTo(0, -s * .38, s * .12, -s * .50);
+    ctx.bezierCurveTo(s * .50, -s * .58, s * .62, s * .10, 0, s * .62);
+    ctx.closePath();
+  }
+  function newPetal(x, y, vx, vy, popped) {
+    return { x: x, y: y, vx: vx, vy: vy, rot: R(0, 6.28), vr: R(-.05, .05), s: popped ? R(16, 30) : R(18, 40),
+             c: pick(PET), ph: R(0, 6.28), life: 0, max: popped ? R(260, 380) : 99999, popped: !!popped };
+  }
+  /* 꽃잎 비의 굵기: 불꽃이 몰아치는 14초까지는 풍성하게, 이후 서서히 줄여 가끔 한두 장만 */
+  function rainRate(ms) { return ms < 14000 ? .2 : Math.max(.04, .2 - (ms - 14000) / 9000 * .16); }
+
+  function burst(x, y) {
+    var n = 56, c1 = pick(MID), c2 = pick(DARK), i, a, inner, sp;
+    for (i = 0; i < n; i++) {
+      a = i / n * Math.PI * 2 + R(-.04, .04); inner = i % 3 === 0; sp = inner ? R(3.6, 5.0) : R(7.6, 9.4);
+      sparks.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 0, max: R(62, 88), w: inner ? 3.4 : 4.6, c: inner ? c2 : c1 });
+    }
+    rings.push({ x: x, y: y, r: 10, life: 0, max: 16 });
+    for (i = 0; i < 26; i++) { a = R(0, 6.28); sp = R(2.5, 8); pets.push(newPetal(x, y, Math.cos(a) * sp, Math.sin(a) * sp - 1.5, true)); }
+  }
+  function launch(x, ty) { rockets.push({ x: x, sy: H + 10, ty: ty, t: 0, dur: R(34, 42), trail: [] }); }
+  function reset() {
+    sparks.length = pets.length = rings.length = rockets.length = timers.length = 0; acc = 0; t0 = clock();
+    for (var j = 0; j < 18; j++) pets.push(newPetal(R(0, W), R(-40, 560), R(-.2, .5), R(1.3, 2.6), false));
+    SHOW.forEach(function (v) {
+      v[2].forEach(function (pt, i) { timers.push({ at: t0 + v[0] + i * v[1], fn: function () { launch(pt[0], pt[1]); } }); });
+    });
+  }
+
+  var last = clock();
+  function step(now) {
+    var dt = Math.min(Math.max((now - last) / 16.667, .5), 2.2), i, p; last = now;
+    ctx.clearRect(0, 0, W, H);
+    for (i = timers.length - 1; i >= 0; i--) if (now >= timers[i].at) { timers[i].fn(); timers.splice(i, 1); }
+
+    /* 꽃잎 비 */
+    acc += rainRate(now - t0) * dt; while (acc >= 1) { acc--; pets.push(newPetal(R(-40, W + 40), -40, R(-.2, .5), R(1.3, 2.6), false)); }
+
+    /* 로켓 */
+    for (i = rockets.length - 1; i >= 0; i--) {
+      p = rockets[i]; p.t += dt / p.dur;
+      var e = 1 - Math.pow(1 - Math.min(p.t, 1), 2.2); p.y = p.sy + (p.ty - p.sy) * e;
+      p.trail.push(p.y); if (p.trail.length > 9) p.trail.shift();
+      ctx.globalAlpha = .9; ctx.strokeStyle = '#0A9A42'; ctx.lineCap = 'round'; ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.moveTo(p.x, p.trail[0]); ctx.lineTo(p.x, p.y); ctx.stroke();
+      ctx.fillStyle = '#0DCC5A'; ctx.beginPath(); ctx.arc(p.x, p.y, 6, 0, 6.28); ctx.fill();
+      if (p.t >= 1) { burst(p.x, p.ty); rockets.splice(i, 1); }
+    }
+    /* 펑 — 충격 고리 */
+    for (i = rings.length - 1; i >= 0; i--) {
+      p = rings[i]; p.life += dt; var k = p.life / p.max;
+      if (k >= 1) { rings.splice(i, 1); continue; }
+      p.r += (150 - p.r) * .22 * dt;
+      ctx.globalAlpha = .5 * (1 - k); ctx.strokeStyle = '#0DCC5A'; ctx.lineWidth = 3 + 9 * (1 - k);
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.28); ctx.stroke();
+    }
+    /* 불꽃 입자 */
+    for (i = sparks.length - 1; i >= 0; i--) {
+      p = sparks[i]; p.life += dt;
+      if (p.life >= p.max) { sparks.splice(i, 1); continue; }
+      var drag = Math.pow(.972, dt); p.vx *= drag; p.vy = p.vy * drag + .075 * dt; p.x += p.vx * dt; p.y += p.vy * dt;
+      ctx.globalAlpha = 1 - Math.pow(p.life / p.max, 2); ctx.strokeStyle = p.c; ctx.lineWidth = p.w; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(p.x - p.vx * 2.4, p.y - p.vy * 2.4); ctx.lineTo(p.x, p.y); ctx.stroke();
+    }
+    /* 꽃잎 */
+    for (i = pets.length - 1; i >= 0; i--) {
+      p = pets[i]; p.ph += .045 * dt; p.life += dt;
+      if (p.popped) { p.vx *= Math.pow(.985, dt); p.vy = Math.min(p.vy * Math.pow(.985, dt) + .045 * dt, 2.4); }
+      p.x += (p.vx + Math.sin(p.ph) * .9) * dt; p.y += p.vy * dt; p.rot += p.vr * dt;
+      if (p.y > H + 60 || p.x < -80 || p.x > W + 80 || p.life > p.max) { pets.splice(i, 1); continue; }
+      var fade = p.popped ? Math.min(1, (p.max - p.life) / 50) : 1;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(Math.max(.28, Math.abs(Math.cos(p.ph * 1.8))), 1);
+      ctx.globalAlpha = .9 * fade; ctx.fillStyle = p.c; petalPath(p.s); ctx.fill();
+      ctx.strokeStyle = 'rgba(10,154,66,.30)'; ctx.lineWidth = 1.6; ctx.stroke(); ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function frame(now) { step(now); requestAnimationFrame(frame); }
+  reset();
+  if (RENDER) {
+    /* 영상 캡처: 60Hz 로 한 칸씩 계산하고 CSS 애니메이션도 같은 시각에 맞춘다 */
+    window.renderAt = function (ms) {
+      while (simT < ms) { simT += 1000 / 60; step(simT); }
+      document.getAnimations().forEach(function (a) { a.pause(); a.currentTime = ms; });
+    };
+  } else requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
