@@ -11,7 +11,9 @@
   /* ── 신규 오피스 입주 환영 (2026-11) ────────────────────────────────
      흰 바탕 + 그린. 글자는 튀어 오르고, 캔버스에서 불꽃이 터지고 꽃잎이 내린다.
      불꽃놀이 연출은 40초 노출 기준. ?render=1 은 영상 캡처용(시간을 밖에서 돌린다). */
-  #fx{position:absolute;left:0;top:0;width:1920px;height:1080px;z-index:2;pointer-events:none;}
+  #fx,#fxb{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;}
+  #fxb{z-index:0;}   /* 꽃잎·로켓 선: 글자 뒤 */
+  #fx{z-index:2;}    /* 터지는 불꽃·충격 고리: 글자 앞 */
   .wc{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
 
   .hero{display:flex;font-family:var(--num);font-weight:900;font-size:340px;line-height:1;letter-spacing:-.045em;color:var(--green-ink);}
@@ -27,6 +29,7 @@
 <div id="stage-wrap">
   <div id="stage">
     <section class="s">
+      <canvas id="fxb" width="1920" height="1080"></canvas>
       <canvas id="fx" width="1920" height="1080"></canvas>
       <div class="wc">
         <h1 class="hero" aria-label="Welcome"><span style="--i:0">W</span><span style="--i:1">e</span><span style="--i:2">l</span><span style="--i:3">c</span><span style="--i:4">o</span><span style="--i:5">m</span><span style="--i:6">e</span></h1>
@@ -40,8 +43,8 @@
 /* 불꽃놀이 + 꽃잎 — 1920×1080 무대 좌표 그대로 그린다. 노출 40초 동안 계속 터지면 피로하므로
    「시작 몰아치기 → 피날레 → 조용히 두고 가끔 한두 발」 순서로 짜고, 꽃잎도 같은 곡선으로 줄인다. 화면이 다시 열릴 때마다 처음부터. */
 (function () {
-  var cv = document.getElementById('fx'), ctx = cv.getContext('2d'), W = 1920, H = 1080;
-  var RENDER = new URLSearchParams(location.search).get('render') === '1', simT = 0;
+  var cf = document.getElementById('fx').getContext('2d'), cb = document.getElementById('fxb').getContext('2d'), ctx = cf, W = 1920, H = 1080;
+  var Q = new URLSearchParams(location.search), RENDER = Q.get('render') === '1', simT = 0;
   function clock() { return RENDER ? simT : performance.now(); }
 
   var DARK = ['#0A9A42', '#087A34', '#0DCC5A'];
@@ -97,13 +100,14 @@
   var last = clock();
   function step(now) {
     var dt = Math.min(Math.max((now - last) / 16.667, .5), 2.2), i, p; last = now;
-    ctx.clearRect(0, 0, W, H);
+    cf.clearRect(0, 0, W, H); cb.clearRect(0, 0, W, H);
     for (i = timers.length - 1; i >= 0; i--) if (now >= timers[i].at) { timers[i].fn(); timers.splice(i, 1); }
 
     /* 꽃잎 비 */
     acc += rainRate(now - t0) * dt; while (acc >= 1) { acc--; pets.push(newPetal(R(-40, W + 40), -40, R(-.2, .5), R(1.3, 2.6), false)); }
 
-    /* 로켓 */
+    /* 로켓 (글자 뒤) */
+    ctx = cb;
     for (i = rockets.length - 1; i >= 0; i--) {
       p = rockets[i]; p.t += dt / p.dur;
       var e = 1 - Math.pow(1 - Math.min(p.t, 1), 2.2); p.y = p.sy + (p.ty - p.sy) * e;
@@ -113,7 +117,8 @@
       ctx.fillStyle = '#0DCC5A'; ctx.beginPath(); ctx.arc(p.x, p.y, 6, 0, 6.28); ctx.fill();
       if (p.t >= 1) { burst(p.x, p.ty); rockets.splice(i, 1); }
     }
-    /* 펑 — 충격 고리 */
+    /* 펑 — 충격 고리 (글자 앞) */
+    ctx = cf;
     for (i = rings.length - 1; i >= 0; i--) {
       p = rings[i]; p.life += dt; var k = p.life / p.max;
       if (k >= 1) { rings.splice(i, 1); continue; }
@@ -129,7 +134,8 @@
       ctx.globalAlpha = 1 - Math.pow(p.life / p.max, 2); ctx.strokeStyle = p.c; ctx.lineWidth = p.w; ctx.lineCap = 'round';
       ctx.beginPath(); ctx.moveTo(p.x - p.vx * 2.4, p.y - p.vy * 2.4); ctx.lineTo(p.x, p.y); ctx.stroke();
     }
-    /* 꽃잎 */
+    /* 꽃잎 (글자 뒤) */
+    ctx = cb;
     for (i = pets.length - 1; i >= 0; i--) {
       p = pets[i]; p.ph += .045 * dt; p.life += dt;
       if (p.popped) { p.vx *= Math.pow(.985, dt); p.vy = Math.min(p.vy * Math.pow(.985, dt) + .045 * dt, 2.4); }
