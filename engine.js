@@ -451,7 +451,10 @@ function goTo(idx, animate) {
   if (counter) counter.textContent = String(current + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
   if (animate) { resetProgress(); if (playing) restartSlideTimer(); }
 }
-function next() { goTo(current + 1); }
+function next() {
+  if (listChanged) { location.reload(); return; }   /* 슬라이드 목록이 바뀌었으면 다음 장으로 넘어갈 때 새로 연다 */
+  goTo(current + 1);
+}
 function prev() { goTo(current - 1); }
 
 function togglePlay(e) { if (e) e.stopPropagation(); playing ? pauseAll() : resumeAll(); }
@@ -581,14 +584,28 @@ function wireUI() {
 /* ============================================================
    BOOTSTRAP (모든 var/function 선언 완료 후 마지막에 실행)
 ============================================================ */
+var listChanged = false;   /* 30분 확인에서 slides.json 이 바뀐 걸 발견하면 true */
+function watchSlideList(loaded) {
+  /* 사이니지는 켜 둔 채로 오래 돌아가므로 30분에 한 번만 slides.json(약 2KB)을 다시 받아 비교한다.
+     바뀌었으면 지금 장을 끝까지 보여 준 뒤 다음 장으로 넘어갈 때 페이지를 새로 연다. ?recheck=초 로 주기를 바꿔 시험할 수 있다. */
+  var sig = JSON.stringify(loaded);
+  var sec = +new URLSearchParams(location.search).get('recheck') || 1800;
+  setInterval(function() {
+    fetch('slides.json?cb=' + Date.now(), { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
+      .then(function(d){ if (JSON.stringify(d) !== sig) listChanged = true; })
+      .catch(function(){ /* 네트워크 오류는 넘기고 다음 주기에 다시 */ });
+  }, sec * 1000);
+}
+
 (function bootstrap() {
   /* GitHub Pages 등 http(s) → slides.json fetch 시도, 실패 시 인라인 사용 */
   if (location.protocol === 'http:' || location.protocol === 'https:') {
-    fetch('slides.json')
+    fetch('slides.json', { cache: 'no-cache' })   /* 브라우저가 옛 사본을 그대로 쓰지 않도록 매번 서버에 확인 */
       .then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
-      .then(function(d){ initWithData(d); })
+      .then(function(d){ initWithData(d); watchSlideList(d); })
       .catch(function(){
-        if (window.SLIDES_DATA) initWithData(window.SLIDES_DATA);
+        if (window.SLIDES_DATA) { initWithData(window.SLIDES_DATA); watchSlideList(window.SLIDES_DATA); }
       });
   } else {
     /* file:// 로컬 — window.SLIDES_DATA 사용 */
