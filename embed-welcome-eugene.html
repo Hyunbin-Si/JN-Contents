@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유진자산운용 · 방문 환영</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+<style>
+  /* ── 유진자산운용 방문 환영 (2026-11) ────────────────────────────────
+     흰 바탕 + 그린. 글자는 위에서 차례로 나타나고 "환영합니다"는 한 글자씩 튀어 오른다.
+     꽃잎만 잔잔하게. 한 번 쓰고 내리는 일회성 화면(노출 2분). ?render=1 은 영상 캡처용(시간을 밖에서 돌린다). */
+  #fxb{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;z-index:0;}   /* 꽃잎: 글자 뒤 */
+  .wc{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+
+  .org{font-size:140px;line-height:1.2;font-weight:900;letter-spacing:-.05em;color:var(--ink);animation:beatIn .8s .2s both;}
+  .org::after{content:"";display:block;width:96px;height:6px;border-radius:3px;background:var(--green);margin:22px auto 0;}
+  .names{margin-top:34px;font-size:140px;line-height:1.2;font-weight:900;letter-spacing:-.05em;color:var(--ink);animation:beatIn .8s .7s both;}
+  .hero{margin-top:40px;display:flex;font-size:200px;line-height:1.1;font-weight:900;letter-spacing:-.06em;color:var(--green-ink);}
+  .hero span{display:inline-block;animation:letterPop .9s cubic-bezier(.2,1.5,.3,1) calc(1.3s + var(--i) * .1s) both;}
+  @keyframes letterPop{from{opacity:0;transform:translateY(90px) scale(.4) rotate(-10deg);}}
+</style>
+</head>
+<body>
+<div id="stage-wrap">
+  <div id="stage">
+    <section class="s">
+      <canvas id="fxb" width="1920" height="1080"></canvas>
+      <div class="wc">
+        <p class="org">유진자산운용</p>
+        <p class="names">서형준님, 조근형님</p>
+        <h1 class="hero" aria-label="환영합니다"><span style="--i:0">환</span><span style="--i:1">영</span><span style="--i:2">합</span><span style="--i:3">니</span><span style="--i:4">다</span></h1>
+      </div>
+    </section>
+  </div>
+</div>
+<script src="deck.js"></script>
+<script>
+/* 꽃잎 — 1920×1080 무대 좌표 그대로 그린다. 노출 2분 동안 처음엔 조금 많이, 이후엔 잔잔하게 계속 내린다. */
+(function () {
+  var cv = document.getElementById('fxb'), ctx = cv.getContext('2d'), W = 1920, H = 1080;
+  var RENDER = new URLSearchParams(location.search).get('render') === '1', simT = 0;
+  function clock() { return RENDER ? simT : performance.now(); }
+
+  var PET = ['#BFEBD0', '#8FE3B0', '#6EDC9B', '#A8EEC6', '#D4F5E1'];
+  var pets = [], t0 = 0, acc = 0;
+  function R(a, b) { return a + Math.random() * (b - a); }
+  function pick(a) { return a[(Math.random() * a.length) | 0]; }
+
+  function petalPath(s) {
+    ctx.beginPath();
+    ctx.moveTo(0, s * .62);
+    ctx.bezierCurveTo(-s * .62, s * .10, -s * .50, -s * .58, -s * .12, -s * .50);
+    ctx.quadraticCurveTo(0, -s * .38, s * .12, -s * .50);
+    ctx.bezierCurveTo(s * .50, -s * .58, s * .62, s * .10, 0, s * .62);
+    ctx.closePath();
+  }
+  function newPetal(x, y) {
+    return { x: x, y: y, vx: R(-.2, .5), vy: R(1.3, 2.6), rot: R(0, 6.28), vr: R(-.05, .05), s: R(18, 40), c: pick(PET), ph: R(0, 6.28) };
+  }
+  /* 꽃잎 비의 굵기: 처음 10초는 조금 많이, 이후엔 잔잔하게 */
+  function rainRate(ms) { return ms < 10000 ? .09 : .05; }
+
+  function reset() {
+    pets.length = 0; acc = 0; t0 = clock();
+    for (var j = 0; j < 10; j++) pets.push(newPetal(R(0, W), R(-40, 560)));
+  }
+  var last = clock();
+  function step(now) {
+    var dt = Math.min(Math.max((now - last) / 16.667, .5), 2.2), i, p; last = now;
+    ctx.clearRect(0, 0, W, H);
+    acc += rainRate(now - t0) * dt; while (acc >= 1) { acc--; pets.push(newPetal(R(-40, W + 40), -40)); }
+    for (i = pets.length - 1; i >= 0; i--) {
+      p = pets[i]; p.ph += .045 * dt;
+      p.x += (p.vx + Math.sin(p.ph) * .9) * dt; p.y += p.vy * dt; p.rot += p.vr * dt;
+      if (p.y > H + 60 || p.x < -80 || p.x > W + 80) { pets.splice(i, 1); continue; }
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(Math.max(.28, Math.abs(Math.cos(p.ph * 1.8))), 1);
+      ctx.globalAlpha = .9; ctx.fillStyle = p.c; petalPath(p.s); ctx.fill();
+      ctx.strokeStyle = 'rgba(10,154,66,.30)'; ctx.lineWidth = 1.6; ctx.stroke(); ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function frame(now) { step(now); requestAnimationFrame(frame); }
+  reset();
+  if (RENDER) {
+    /* 영상 캡처: 60Hz 로 한 칸씩 계산하고 CSS 애니메이션도 같은 시각에 맞춘다 */
+    window.renderAt = function (ms) {
+      while (simT < ms) { simT += 1000 / 60; step(simT); }
+      document.getAnimations().forEach(function (a) { a.pause(); a.currentTime = ms; });
+    };
+  } else requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
